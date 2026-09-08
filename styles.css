@@ -367,8 +367,7 @@ body.home-page a {
 }
 
 .home-text-link,
-.home-outline-link,
-.home-contact-link {
+.home-outline-link {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -571,8 +570,7 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
 }
 
 .home-about-art svg,
-.home-business-art svg,
-.home-contact-art svg {
+.home-business-art svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -799,19 +797,6 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
   max-width: 360px;
   color: rgba(255, 255, 255, 0.76);
   font-size: 14px;
-}
-
-.home-contact-link {
-  padding-bottom: 11px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-  color: #fff;
-}
-
-.home-contact-art {
-  position: absolute;
-  inset: 0;
-  opacity: 0.9;
-  pointer-events: none;
 }
 
 .home-footer {
@@ -1113,10 +1098,6 @@ html.has-js body.home-page .reveal-item.is-visible {
 
   .home-contact-bottom {
     margin-top: 58px;
-  }
-
-  .home-contact-art {
-    inset: 20% -50% 0 -10%;
   }
 
   .home-footer {
@@ -2547,24 +2528,21 @@ body.home-page .home-reveal-scene.is-visible .stack-block {
 .stack-tower-main .stack-block:nth-child(1),
 .stack-row-about .stack-block:nth-child(1),
 .stack-row-business .stack-block:nth-child(1),
-.stack-tower-information .stack-block:nth-child(1),
-.stack-tower-contact .stack-block:nth-child(1) {
+.stack-tower-information .stack-block:nth-child(1) {
   animation-delay: 120ms;
 }
 
 .stack-tower-main .stack-block:nth-child(2),
 .stack-row-about .stack-block:nth-child(2),
 .stack-row-business .stack-block:nth-child(2),
-.stack-tower-information .stack-block:nth-child(2),
-.stack-tower-contact .stack-block:nth-child(2) {
+.stack-tower-information .stack-block:nth-child(2) {
   animation-delay: 260ms;
 }
 
 .stack-tower-main .stack-block:nth-child(3),
 .stack-row-about .stack-block:nth-child(3),
 .stack-row-business .stack-block:nth-child(3),
-.stack-tower-information .stack-block:nth-child(3),
-.stack-tower-contact .stack-block:nth-child(3) {
+.stack-tower-information .stack-block:nth-child(3) {
   animation-delay: 400ms;
 }
 
@@ -2642,18 +2620,6 @@ body.home-page .home-circle-link:focus-visible .home-circle-arrow {
 
 .home-information .stack-block-deep {
   color: var(--home-violet);
-}
-
-.home-contact .stack-block-soft {
-  color: #ede9fe;
-}
-
-.home-contact .stack-block-primary {
-  color: #c4b5fd;
-}
-
-.home-contact .stack-block-deep {
-  color: #fff;
 }
 
 @media (max-width: 640px) {
@@ -2761,18 +2727,6 @@ body.home-page .home-company-block-animation {
   justify-self: center;
 }
 
-body.home-page .home-contact-art {
-  z-index: 1;
-  display: grid;
-  place-items: center;
-}
-
-body.home-page .home-contact-art svg {
-  width: min(100%, 1200px);
-  height: 100%;
-  margin-left: auto;
-}
-
 @media (max-width: 920px) {
   body.home-page .home-about-grid {
     min-height: 560px;
@@ -2819,11 +2773,6 @@ body.home-page .home-contact-art svg {
     transform: translate3d(-4px, 84px, 0);
   }
 
-  body.home-page .home-contact-art svg {
-    width: 118%;
-    max-width: none;
-    transform: translateX(12%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
