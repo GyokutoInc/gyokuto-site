@@ -376,29 +376,105 @@ body.home-page a {
   font-weight: 800;
 }
 
-.home-text-link .icon-arrow,
-.home-outline-link .icon-arrow {
+.home-text-link .arrow-button,
+.home-outline-link .arrow-button {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+}
+
+.arrow-button {
+  --arrow-fill: var(--home-violet, var(--purple));
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--arrow-fill);
+  background: transparent;
+  isolation: isolate;
+  perspective: 80px;
+  transform-style: preserve-3d;
+  transition: transform 450ms var(--home-ease), border-color 300ms ease, color 300ms ease;
+}
+
+.arrow-button::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  content: "";
+  border-radius: inherit;
+  background: var(--arrow-fill);
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 500ms cubic-bezier(0.17, 0.13, 0.28, 1);
+}
+
+.arrow-button .icon-arrow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: block;
   width: 17px;
   height: 17px;
-  flex: 0 0 17px;
-  transition: transform 350ms var(--home-ease);
-}
-
-.icon-arrow {
-  display: block;
+  margin: auto;
   overflow: visible;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  backface-visibility: hidden;
+  transform-origin: 50% 0%;
+  transition: transform 400ms 100ms var(--home-ease), color 200ms ease;
 }
 
-.home-text-link:hover .icon-arrow,
-.home-text-link:focus-visible .icon-arrow,
-.home-outline-link:hover .icon-arrow,
-.home-outline-link:focus-visible .icon-arrow {
+.arrow-button .icon-arrow-secondary {
+  transform: translate3d(0, 105%, 0) rotateX(-90deg);
+}
+
+.arrow-button:hover,
+.home-text-link:focus-visible .arrow-button,
+.home-outline-link:focus-visible .arrow-button,
+.home-circle-link:focus-visible .arrow-button,
+.home-business-blob:focus-visible .arrow-button {
+  border-color: var(--arrow-fill);
+  color: #fff;
+}
+
+.arrow-button:hover::before,
+.home-text-link:focus-visible .arrow-button::before,
+.home-outline-link:focus-visible .arrow-button::before,
+.home-circle-link:focus-visible .arrow-button::before,
+.home-business-blob:focus-visible .arrow-button::before {
+  transform: scale(1);
+}
+
+.arrow-button:hover .icon-arrow-primary,
+.home-text-link:focus-visible .arrow-button .icon-arrow-primary,
+.home-outline-link:focus-visible .arrow-button .icon-arrow-primary,
+.home-circle-link:focus-visible .arrow-button .icon-arrow-primary,
+.home-business-blob:focus-visible .arrow-button .icon-arrow-primary {
+  transform: translate3d(0, 0, -24px) rotateX(90deg);
+}
+
+.arrow-button:hover .icon-arrow-secondary,
+.home-text-link:focus-visible .arrow-button .icon-arrow-secondary,
+.home-outline-link:focus-visible .arrow-button .icon-arrow-secondary,
+.home-circle-link:focus-visible .arrow-button .icon-arrow-secondary,
+.home-business-blob:focus-visible .arrow-button .icon-arrow-secondary {
+  color: #fff;
+  transform: translate3d(0, 0, 0) rotateX(0deg);
+  transition-delay: 100ms;
+}
+
+.home-text-link:hover .arrow-button,
+.home-text-link:focus-visible .arrow-button,
+.home-outline-link:hover .arrow-button,
+.home-outline-link:focus-visible .arrow-button {
   transform: translate(4px, -4px);
 }
 
@@ -625,14 +701,12 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
 }
 
 .home-business-blob-arrow {
-  display: grid;
+  display: inline-grid;
   width: 52px;
   height: 52px;
   margin-top: 24px;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.76);
-  border-radius: 50%;
-  transition: background 450ms var(--home-ease), color 450ms var(--home-ease), transform 450ms var(--home-ease);
+  transition: transform 450ms var(--home-ease), border-color 300ms ease, color 300ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -643,8 +717,8 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
 
   .home-business-blob:hover .home-business-blob-arrow,
   .home-business-blob:focus-visible .home-business-blob-arrow {
-    color: var(--home-violet-dark);
-    background: #fff;
+    border-color: var(--home-violet);
+    color: #fff;
     transform: translate(4px, -4px) rotate(8deg);
   }
 }
@@ -1105,9 +1179,12 @@ html.has-js body.home-page .reveal-item.is-visible {
   body.home-page .home-header,
   body.home-page .home-business-blob,
   body.home-page .home-business-blob-svg,
-  body.home-page .home-circle-link svg,
-  body.home-page .home-text-link .icon-arrow,
-  body.home-page .home-outline-link .icon-arrow,
+  body.home-page .home-circle-link .arrow-button,
+  body.home-page .home-text-link .arrow-button,
+  body.home-page .home-outline-link .arrow-button,
+  body.home-page .home-business-blob .arrow-button,
+  body.home-page .arrow-button::before,
+  body.home-page .arrow-button .icon-arrow,
   body.home-page .home-company-block-animation {
     transition: none;
   }
@@ -2571,13 +2648,13 @@ body.home-page .home-circle-arrow {
   height: 58px;
   border: 1px solid currentColor;
   border-radius: 50%;
-  transition: transform 450ms var(--home-ease), background 300ms ease, color 300ms ease;
+  transition: transform 450ms var(--home-ease), border-color 300ms ease, color 300ms ease;
 }
 
 body.home-page .home-circle-link:hover .home-circle-arrow,
 body.home-page .home-circle-link:focus-visible .home-circle-arrow {
+  border-color: var(--home-violet);
   color: #fff;
-  background: var(--home-violet);
   transform: translateX(4px);
 }
 
@@ -2613,7 +2690,9 @@ body.home-page .home-circle-link:focus-visible .home-circle-arrow {
   }
 
   body.home-page .home-circle-arrow,
-  body.home-page .home-business-blob-svg {
+  body.home-page .home-business-blob-svg,
+  body.home-page .arrow-button::before,
+  body.home-page .arrow-button .icon-arrow {
     transition: none;
   }
 }
