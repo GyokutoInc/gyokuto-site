@@ -5,6 +5,10 @@ const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".home-header, .site-header");
+const navOriginalParent = siteNav?.parentElement || null;
+const navOriginalNextSibling = siteNav?.nextSibling || null;
+let navIsPortaled = false;
+let navScrollY = 0;
 
 function initCursorFollower() {
   const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -108,12 +112,27 @@ function closeNav() {
   syncNavState();
 }
 
+function syncNavPortal(isMobile) {
+  if (!siteNav || !navOriginalParent) {
+    return;
+  }
+
+  if (isMobile && !navIsPortaled) {
+    document.body.append(siteNav);
+    navIsPortaled = true;
+  } else if (!isMobile && navIsPortaled) {
+    navOriginalParent.insertBefore(siteNav, navOriginalNextSibling);
+    navIsPortaled = false;
+  }
+}
+
 function syncNavState() {
   if (!navToggle || !siteNav) {
     return;
   }
 
   const isMobile = window.matchMedia("(max-width: 920px)").matches;
+  syncNavPortal(isMobile);
   const isOpen = siteNav.classList.contains("is-open");
 
   if (isMobile) {
@@ -129,6 +148,8 @@ function syncNavState() {
   }
 
   const effectiveOpen = isMobile && isOpen;
+  document.documentElement.classList.toggle("nav-is-open", effectiveOpen);
+  document.body.classList.toggle("nav-is-open", effectiveOpen);
   navToggle.setAttribute("aria-expanded", String(effectiveOpen));
   navToggle.setAttribute("aria-label", effectiveOpen ? "メニューを閉じる" : "メニューを開く");
   navToggle.textContent = effectiveOpen ? "閉じる" : "メニュー";
@@ -136,8 +157,22 @@ function syncNavState() {
 
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
+    const willOpen = !siteNav.classList.contains("is-open");
+
+    if (willOpen) {
+      navScrollY = window.scrollY;
+    }
+
     siteNav.classList.toggle("is-open");
     syncNavState();
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({
+        top: navScrollY,
+        left: 0,
+        behavior: "auto"
+      });
+    });
   });
 
   siteNav.querySelectorAll("a").forEach((link) => {

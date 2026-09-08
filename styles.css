@@ -378,46 +378,21 @@ body.home-page a {
 
 .home-text-link .icon-arrow,
 .home-outline-link .icon-arrow {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  flex: 0 0 1em;
-  position: relative;
-  font-size: 17px;
-  line-height: 1;
+  display: block;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
   transition: transform 350ms var(--home-ease);
 }
 
 .icon-arrow {
-  position: relative;
-}
-
-.icon-arrow::before,
-.icon-arrow::after {
-  position: absolute;
   display: block;
-  content: "";
-  box-sizing: border-box;
-  background: currentColor;
-}
-
-.icon-arrow::before {
-  top: 48%;
-  left: 8%;
-  width: 72%;
-  height: 1.5px;
-  transform: rotate(-45deg);
-  transform-origin: left center;
-}
-
-.icon-arrow::after {
-  top: 13%;
-  right: 8%;
-  width: 38%;
-  height: 38%;
-  background: transparent;
-  border-top: 1.5px solid currentColor;
-  border-right: 1.5px solid currentColor;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .home-text-link:hover .icon-arrow,
@@ -657,8 +632,6 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.76);
   border-radius: 50%;
-  font-size: 20px;
-  line-height: 1;
   transition: background 450ms var(--home-ease), color 450ms var(--home-ease), transform 450ms var(--home-ease);
 }
 
@@ -2598,8 +2571,6 @@ body.home-page .home-circle-arrow {
   height: 58px;
   border: 1px solid currentColor;
   border-radius: 50%;
-  font-size: 20px;
-  line-height: 1;
   transition: transform 450ms var(--home-ease), background 300ms ease, color 300ms ease;
 }
 
@@ -3344,5 +3315,43 @@ body.inner-page button[type="submit"]:focus-visible {
   body.inner-page .list-item .text-link {
     grid-column: auto;
     grid-row: auto;
+  }
+}
+
+/* Mobile navigation is portaled outside the sticky header so it always uses the viewport as its frame. */
+@media (max-width: 920px) {
+  html.has-js .site-header {
+    z-index: 70;
+  }
+
+  html.has-js .site-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    width: 100%;
+    min-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  html.nav-is-open,
+  body.nav-is-open {
+    overflow: hidden;
+  }
+
+  body.nav-is-open .home-nav-toggle,
+  body.nav-is-open .nav-toggle {
+    position: fixed;
+    top: 14px;
+    right: 24px;
+    z-index: 71;
+  }
+}
+
+@media (max-width: 640px) {
+  body.nav-is-open .home-nav-toggle,
+  body.nav-is-open .nav-toggle {
+    top: 12px;
+    right: 16px;
   }
 }
