@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 900" role="img" aria-labelledby="title desc">
+  <title id="title">Gyokuto motion align</title>
+  <desc id="desc">Three solid beams arrive from different positions and settle into the same direction as an orderly set of working lanes.</desc>
+  <style>
+    :root {
+      --gyokuto-violet: #534dff;
+      --gyokuto-blue: #8dbbff;
+    }
+
+    .beam {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-duration: 1900ms;
+      animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+
+    .beam--violet { fill: var(--gyokuto-violet); }
+    .beam--blue { fill: var(--gyokuto-blue); }
+
+    .beam--top { animation-name: align-top; }
+    .beam--middle { animation-name: align-middle; }
+    .beam--bottom { animation-name: align-bottom; }
+
+    @keyframes align-top {
+      0% { opacity: .2; transform: translate3d(-560px, -330px, 0) rotate(-18deg) scale(.76); }
+      68%, 100% { opacity: 1; transform: translate3d(0, -220px, 0) rotate(0) scale(1); }
+    }
+
+    @keyframes align-middle {
+      0% { opacity: .2; transform: translate3d(40px, 320px, 0) rotate(15deg) scale(.76); }
+      68%, 100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0) scale(1); }
+    }
+
+    @keyframes align-bottom {
+      0% { opacity: .2; transform: translate3d(560px, 310px, 0) rotate(-14deg) scale(.76); }
+      68%, 100% { opacity: 1; transform: translate3d(0, 220px, 0) rotate(0) scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .beam { animation: none; opacity: 1; }
+      .beam--top { transform: translate3d(0, -220px, 0); }
+      .beam--middle { transform: translate3d(0, 0, 0); }
+      .beam--bottom { transform: translate3d(0, 220px, 0); }
+    }
+  </style>
+
+  <g transform="translate(900 450)">
+    <path class="beam beam--blue beam--top" d="M-540-48H460L520 48H-480Z" />
+    <path class="beam beam--violet beam--middle" d="M-540-48H460L520 48H-480Z" />
+    <path class="beam beam--blue beam--bottom" d="M-540-48H460L520 48H-480Z" />
+  </g>
+</svg>

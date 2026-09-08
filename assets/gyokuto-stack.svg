@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewBox="0 0 120 126" aria-hidden="true">
+  <symbol id="gx-block" viewBox="0 0 120 126">
+    <path d="M60 4 114 34 60 64 6 34Z" fill="currentColor"/>
+    <path d="M6 34 60 64v58L6 92Z" fill="currentColor" opacity=".46"/>
+    <path d="m60 64 54-30v58l-54 30Z" fill="currentColor" opacity=".78"/>
+  </symbol>
+</svg>

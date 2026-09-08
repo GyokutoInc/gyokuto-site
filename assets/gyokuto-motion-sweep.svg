@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 560" role="img" aria-labelledby="title desc">
+  <title id="title">Gyokuto motion sweep</title>
+  <desc id="desc">One broad solid beam makes a clear, fast pass from left to right.</desc>
+  <style>
+    :root {
+      --gyokuto-violet: #534dff;
+    }
+
+    .sweep {
+      fill: var(--gyokuto-violet);
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sweep-across 1500ms cubic-bezier(.22, 1, .36, 1) 1 both;
+    }
+
+    @keyframes sweep-across {
+      0% {
+        opacity: 0;
+        transform: translate3d(-1180px, 92px, 0) rotate(-4deg) scaleX(.55);
+      }
+      24% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(0deg) scaleX(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sweep {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+
+  <path class="sweep" d="M-260 178H1790L1668 382H-382Z" />
+</svg>

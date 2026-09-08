@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 640" role="img" aria-labelledby="title desc">
+  <title id="title">Gyokuto motion relay</title>
+  <desc id="desc">Four broad solid beams make a strong left-to-right pass one after another.</desc>
+  <style>
+    :root {
+      --gyokuto-violet: #534dff;
+      --gyokuto-blue: #8dbbff;
+    }
+
+    .beam {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: relay-across 1450ms cubic-bezier(.22, 1, .36, 1) 1 both;
+    }
+
+    .beam--violet {
+      color: var(--gyokuto-violet);
+      animation-delay: 0ms;
+    }
+
+    .beam--blue {
+      color: var(--gyokuto-blue);
+      animation-delay: 150ms;
+    }
+
+    .beam--violet-late {
+      color: var(--gyokuto-violet);
+      animation-delay: 300ms;
+    }
+
+    .beam--blue-late {
+      color: var(--gyokuto-blue);
+      animation-delay: 450ms;
+    }
+
+    @keyframes relay-across {
+      0% {
+        opacity: 0;
+        transform: translate3d(-1200px, 0, 0) scaleX(.42);
+      }
+      24% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scaleX(1);
+      }
+    }
+
+    .beam-shape {
+      fill: currentColor;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .beam {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+
+  <path class="beam beam--violet beam-shape" d="M-420 70H1820L1740 166H-500Z" />
+  <path class="beam beam--blue beam-shape" d="M-420 210H1820L1740 306H-500Z" />
+  <path class="beam beam--violet-late beam-shape" d="M-420 350H1820L1740 446H-500Z" />
+  <path class="beam beam--blue-late beam-shape" d="M-420 490H1820L1740 586H-500Z" />
+</svg>

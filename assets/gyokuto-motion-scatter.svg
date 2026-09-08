@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Gyokuto motion scatter</title>
+  <desc id="desc">Five identical solid beams gather into one working mass, then spread into an orderly set of parallel lanes.</desc>
+  <style>
+    :root {
+      --gyokuto-violet: #534dff;
+      --gyokuto-blue: #8dbbff;
+    }
+
+    .beam {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-duration: 1800ms;
+      animation-timing-function: cubic-bezier(.76, 0, .24, 1);
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+
+    .beam--violet { fill: var(--gyokuto-violet); }
+    .beam--blue { fill: var(--gyokuto-blue); }
+
+    .beam--one { animation-name: scatter-one; }
+    .beam--two { animation-name: scatter-two; }
+    .beam--three { animation-name: scatter-three; }
+    .beam--four { animation-name: scatter-four; }
+    .beam--five { animation-name: scatter-five; }
+
+    @keyframes scatter-one {
+      0% { transform: translate3d(0, 0, 0); }
+      68%, 100% { transform: translate3d(-420px, -180px, 0); }
+    }
+
+    @keyframes scatter-two {
+      0% { transform: translate3d(0, 0, 0); }
+      68%, 100% { transform: translate3d(-210px, -90px, 0); }
+    }
+
+    @keyframes scatter-three {
+      0% { transform: translate3d(0, 0, 0); }
+      68%, 100% { transform: translate3d(0, 0, 0); }
+    }
+
+    @keyframes scatter-four {
+      0% { transform: translate3d(0, 0, 0); }
+      68%, 100% { transform: translate3d(210px, 90px, 0); }
+    }
+
+    @keyframes scatter-five {
+      0% { transform: translate3d(0, 0, 0); }
+      68%, 100% { transform: translate3d(420px, 180px, 0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .beam { animation: none; transform: none; }
+      .beam--one { transform: translate3d(-420px, -180px, 0); }
+      .beam--two { transform: translate3d(-210px, -90px, 0); }
+      .beam--three { transform: translate3d(0, 0, 0); }
+      .beam--four { transform: translate3d(210px, 90px, 0); }
+      .beam--five { transform: translate3d(420px, 180px, 0); }
+    }
+  </style>
+
+  <g transform="translate(800 450)">
+    <path class="beam beam--violet beam--one" d="M-220-34H190L235 34H-175Z" />
+    <path class="beam beam--blue beam--two" d="M-220-34H190L235 34H-175Z" />
+    <path class="beam beam--violet beam--three" d="M-220-34H190L235 34H-175Z" />
+    <path class="beam beam--blue beam--four" d="M-220-34H190L235 34H-175Z" />
+    <path class="beam beam--violet beam--five" d="M-220-34H190L235 34H-175Z" />
+  </g>
+</svg>
