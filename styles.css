@@ -377,21 +377,54 @@ body.home-page a {
   font-weight: 800;
 }
 
-.home-text-link span,
-.home-outline-link span,
-.home-contact-link span {
+.home-text-link .icon-arrow,
+.home-outline-link .icon-arrow {
   display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 1em;
+  position: relative;
   font-size: 17px;
   line-height: 1;
   transition: transform 350ms var(--home-ease);
 }
 
-.home-text-link:hover span,
-.home-text-link:focus-visible span,
-.home-outline-link:hover span,
-.home-outline-link:focus-visible span,
-.home-contact-link:hover span,
-.home-contact-link:focus-visible span {
+.icon-arrow {
+  position: relative;
+}
+
+.icon-arrow::before,
+.icon-arrow::after {
+  position: absolute;
+  display: block;
+  content: "";
+  box-sizing: border-box;
+  background: currentColor;
+}
+
+.icon-arrow::before {
+  top: 48%;
+  left: 8%;
+  width: 72%;
+  height: 1.5px;
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
+
+.icon-arrow::after {
+  top: 13%;
+  right: 8%;
+  width: 38%;
+  height: 38%;
+  background: transparent;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+}
+
+.home-text-link:hover .icon-arrow,
+.home-text-link:focus-visible .icon-arrow,
+.home-outline-link:hover .icon-arrow,
+.home-outline-link:focus-visible .icon-arrow {
   transform: translate(4px, -4px);
 }
 
@@ -1119,9 +1152,8 @@ html.has-js body.home-page .reveal-item.is-visible {
   body.home-page .home-business-blob,
   body.home-page .home-business-blob-svg,
   body.home-page .home-circle-link svg,
-  body.home-page .home-text-link span,
-  body.home-page .home-outline-link span,
-  body.home-page .home-contact-link span,
+  body.home-page .home-text-link .icon-arrow,
+  body.home-page .home-outline-link .icon-arrow,
   body.home-page .home-company-block-animation {
     transition: none;
   }
