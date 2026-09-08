@@ -2366,7 +2366,19 @@ body.home-page .home-footer {
 
 body.home-page .home-footer-nav {
   gap: 16px 22px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #fff;
+}
+
+body.home-page .home-footer-nav a,
+body.inner-page .site-footer .footer-nav a {
+  color: #fff;
+}
+
+body.home-page .home-footer-nav a:hover,
+body.home-page .home-footer-nav a:focus-visible,
+body.inner-page .site-footer .footer-nav a:hover,
+body.inner-page .site-footer .footer-nav a:focus-visible {
+  color: var(--home-violet-soft, #c4b5fd);
 }
 
 @media (max-width: 920px) {
