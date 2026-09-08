@@ -635,7 +635,6 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
   .home-business-blob:hover .home-business-blob-svg,
   .home-business-blob:focus-visible .home-business-blob-svg {
     filter: saturate(1.12) contrast(1.04);
-    transform: scale(1.035) rotate(1.5deg);
   }
 
   .home-business-blob:hover .home-business-blob-arrow,

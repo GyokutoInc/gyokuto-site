@@ -261,7 +261,7 @@ function initBusinessBlobButtons() {
   }
 
   const createPoints = (phaseOffset) => {
-    const pointCount = 8;
+    const pointCount = 10;
     const angleStep = (Math.PI * 2) / pointCount;
 
     return Array.from({ length: pointCount }, (_, index) => {
@@ -269,7 +269,7 @@ function initBusinessBlobButtons() {
 
       return {
         angle,
-        baseRadius: 71 + ((index % 3) - 1) * 2,
+        baseRadius: 71 + ((index % 4) - 1.5) * 3,
         phase: phaseOffset + index * 0.82,
         x: 100 + Math.cos(angle) * 71,
         y: 100 + Math.sin(angle) * 71
@@ -300,21 +300,27 @@ function initBusinessBlobButtons() {
     const path = blob.querySelector("[data-business-blob-path]");
     const gradient = blob.querySelector("linearGradient");
     const points = createPoints(blobIndex * 1.7);
-    let isHovered = false;
+    let hoverTarget = 0;
+    let hoverProgress = 0;
 
     if (!path) {
       return;
     }
 
     const render = (time) => {
-      const timeScale = isHovered ? 0.00105 : 0.00052;
-      const phase = time * timeScale + blobIndex * 0.8;
+      hoverProgress += (hoverTarget - hoverProgress) * 0.08;
+      const phase = time * 0.00078 + blobIndex * 0.8;
+      const primaryAmplitude = 14 + hoverProgress * 4;
+      const secondaryAmplitude = 7 + hoverProgress * 2;
+      const tertiaryAmplitude = 4 + hoverProgress * 2;
+      const driftAmplitude = 4.5 + hoverProgress * 2.5;
 
       points.forEach((point) => {
-        const wobble = Math.sin(phase + point.phase) * (isHovered ? 8 : 5)
-          + Math.sin(phase * 0.63 + point.phase * 1.7) * 3;
-        const driftX = Math.sin(phase * 0.42 + point.phase) * 1.5;
-        const driftY = Math.cos(phase * 0.36 + point.phase) * 1.5;
+        const wobble = Math.sin(phase + point.phase) * primaryAmplitude
+          + Math.sin(phase * 0.61 + point.phase * 1.7) * secondaryAmplitude
+          + Math.cos(phase * 0.31 + point.phase * 2.4) * tertiaryAmplitude;
+        const driftX = Math.sin(phase * 0.34 + point.phase) * driftAmplitude;
+        const driftY = Math.cos(phase * 0.29 + point.phase) * driftAmplitude;
         const radius = point.baseRadius + wobble;
 
         point.x = 100 + Math.cos(point.angle) * radius + driftX;
@@ -324,7 +330,7 @@ function initBusinessBlobButtons() {
       path.setAttribute("d", createSmoothPath(points));
 
       if (gradient) {
-        const rotation = 90 + Math.sin(phase * 0.45) * 16;
+        const rotation = 90 + Math.sin(phase * 0.45) * 34;
         gradient.setAttribute("gradientTransform", `rotate(${rotation.toFixed(2)} 100 100)`);
       }
 
@@ -334,7 +340,7 @@ function initBusinessBlobButtons() {
     };
 
     const setHovered = (value) => {
-      isHovered = value;
+      hoverTarget = value ? 1 : 0;
     };
 
     blob.addEventListener("mouseenter", () => setHovered(true));
