@@ -4,18 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gyokuto株式会社 | 事業の立ち上げと運営を支える会社</title>
-  <meta name="description" content="Gyokuto株式会社は、BPO・業務支援、Webサービス・システム企画、物販・EC関連事業、有料Q&Aプラットフォームなどを通じて、事業運営を支援する会社です。">
+  <meta name="description" content="Gyokuto株式会社は、AIコンサルティング事業、BPO事業、IT戦略・システム開発事業を通じて、事業運営を支援する会社です。">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Gyokuto株式会社">
-  <meta property="og:description" content="BPO・業務支援、Webサービス・システム企画、物販・EC関連事業、有料Q&Aプラットフォームを行うGyokuto株式会社の公式サイトです。">
+  <meta property="og:description" content="AIコンサルティング事業、BPO事業、IT戦略・システム開発事業を行うGyokuto株式会社の公式サイトです。">
   <meta property="og:url" content="https://corp.gyokuto-inc.com/">
   <meta property="og:image" content="https://corp.gyokuto-inc.com/assets/hero-operations.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://corp.gyokuto-inc.com/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260909-25">
+  <link rel="stylesheet" href="styles.css?v=20260920-43">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,13 +57,23 @@
   </div>
   <header class="site-header home-header">
     <a class="brand home-brand" href="index.html" aria-label="Gyokuto株式会社 トップページ">
-      <span class="home-brand-mark" aria-hidden="true">G</span>
+      <img class="home-brand-image" src="assets/gyokuto-logo-mark.png" alt="">
       <span>Gyokuto</span>
     </a>
     <button class="nav-toggle home-nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">メニュー</button>
     <nav class="site-nav home-nav" aria-label="主要ナビゲーション">
       <a href="#about">私たちについて</a>
-      <a href="#business">事業内容</a>
+      <div class="nav-business">
+        <button class="nav-business-trigger" type="button" aria-expanded="false" aria-controls="business-subnav">
+          <span>事業内容</span>
+          <span class="nav-business-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="nav-business-subnav" id="business-subnav">
+          <a href="ai-it-consulting.html"><span>AIコンサルティング事業</span><span class="nav-business-arrow" aria-hidden="true">↗</span></a>
+          <a href="bpo.html"><span>BPO事業</span><span class="nav-business-arrow" aria-hidden="true">↗</span></a>
+          <a href="web-services.html"><span>IT戦略・システム開発事業</span><span class="nav-business-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
       <a href="company.html">会社概要</a>
       <a class="nav-cta home-nav-cta" href="contact.html">お問い合わせ</a>
     </nav>
@@ -99,7 +110,7 @@
         <div class="home-about-grid">
           <h2 id="about-title" class="home-display home-display-large home-about-statement reveal-item" style="--delay: 80ms">Gyokutoは、本質的な<br>課題整理と技術を通じて、<br>この社会のすべての人の<br>挑戦を前に進めます。</h2>
           <div class="home-about-copy reveal-item" style="--delay: 160ms">
-            <p>Gyokutoは、BPO・業務支援、Webサービス・システム企画、物販・EC関連事業、有料Q&amp;Aプラットフォームを通じて、事業を動かすための実務を支えます。</p>
+            <p>Gyokutoは、AIコンサルティング事業、BPO事業、IT戦略・システム開発事業を通じて、事業を動かすための実務を支えます。</p>
             <a class="home-circle-link" href="company.html" aria-label="Gyokutoについて詳しく見る">
               <span class="home-circle-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
               <span>Gyokutoについて</span>
@@ -157,73 +168,29 @@
           <span class="home-section-rule" aria-hidden="true"></span>
         </div>
         <div class="home-business-list">
-          <a class="home-business-blob reveal-item" style="--delay: 220ms" href="bpo.html" data-business-blob>
-            <svg class="home-business-blob-svg" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="home-business-gradient-1" gradientUnits="userSpaceOnUse" x1="40" y1="10" x2="160" y2="190">
-                  <stop offset="0%" stop-color="#8b5cf6"></stop>
-                  <stop offset="100%" stop-color="#c4b5fd"></stop>
-                </linearGradient>
-              </defs>
-              <path data-business-blob-path="" d="M 100 27 C 144 25 176 55 174 100 C 172 144 145 178 99 174 C 56 170 24 147 26 99 C 28 56 54 29 100 27 Z" fill="url(#home-business-gradient-1)"></path>
-            </svg>
-            <span class="home-business-blob-content">
-              <span class="home-business-blob-index">01</span>
-              <strong>BPO・業務支援</strong>
-              <span class="home-business-blob-description">データ整理、入力、リスト作成、資料整備など、定型化・標準化できる業務を支援します。</span>
-              <span class="home-business-blob-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
+          <a class="home-business-card reveal-item" style="--delay: 220ms" href="ai-it-consulting.html">
+            <span class="home-business-card-index">01</span>
+            <span class="home-business-card-content">
+              <strong>AIコンサルティング事業</strong>
+              <span class="home-business-card-description">社内業務へのAI導入・活用に向けて、対象業務の整理からユースケース設計、導入・定着まで支援します。</span>
             </span>
+            <span class="home-business-card-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
           </a>
-          <a class="home-business-blob reveal-item" style="--delay: 300ms" href="web-services.html" data-business-blob>
-            <svg class="home-business-blob-svg" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="home-business-gradient-2" gradientUnits="userSpaceOnUse" x1="30" y1="6" x2="170" y2="188">
-                  <stop offset="0%" stop-color="#c4b5fd"></stop>
-                  <stop offset="100%" stop-color="#8b5cf6"></stop>
-                </linearGradient>
-              </defs>
-              <path data-business-blob-path="" d="M 100 27 C 144 25 176 55 174 100 C 172 144 145 178 99 174 C 56 170 24 147 26 99 C 28 56 54 29 100 27 Z" fill="url(#home-business-gradient-2)"></path>
-            </svg>
-            <span class="home-business-blob-content">
-              <span class="home-business-blob-index">02</span>
-              <strong>Webサービス・システム企画</strong>
-              <span class="home-business-blob-description">事業者向けのWebサービス、業務支援ツール、オンラインサービスを企画・運営します。</span>
-              <span class="home-business-blob-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
+          <a class="home-business-card reveal-item" style="--delay: 300ms" href="bpo.html">
+            <span class="home-business-card-index">02</span>
+            <span class="home-business-card-content">
+              <strong>BPO事業</strong>
+              <span class="home-business-card-description">データ整理、入力、リスト作成、資料整備など、定型化・標準化できる業務を支援します。</span>
             </span>
+            <span class="home-business-card-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
           </a>
-          <a class="home-business-blob reveal-item" style="--delay: 380ms" href="ecommerce.html" data-business-blob>
-            <svg class="home-business-blob-svg" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="home-business-gradient-3" gradientUnits="userSpaceOnUse" x1="24" y1="18" x2="176" y2="172">
-                  <stop offset="0%" stop-color="#6d28d9"></stop>
-                  <stop offset="100%" stop-color="#a78bfa"></stop>
-                </linearGradient>
-              </defs>
-              <path data-business-blob-path="" d="M 100 27 C 144 25 176 55 174 100 C 172 144 145 178 99 174 C 56 170 24 147 26 99 C 28 56 54 29 100 27 Z" fill="url(#home-business-gradient-3)"></path>
-            </svg>
-            <span class="home-business-blob-content">
-              <span class="home-business-blob-index">03</span>
-              <strong>物販・EC関連</strong>
-              <span class="home-business-blob-description">商品情報、販売導線、注文後の運営業務など、ECに必要な実務を整理します。</span>
-              <span class="home-business-blob-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
+          <a class="home-business-card reveal-item" style="--delay: 380ms" href="web-services.html">
+            <span class="home-business-card-index">03</span>
+            <span class="home-business-card-content">
+              <strong>IT戦略・システム開発事業</strong>
+              <span class="home-business-card-description">業務整理やシステム化の方針検討から、Webサービス・業務システムのスクラッチ開発、導入後の改善まで支援します。</span>
             </span>
-          </a>
-          <a class="home-business-blob reveal-item" style="--delay: 460ms" href="web-services.html#fan-platform" data-business-blob>
-            <svg class="home-business-blob-svg" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="home-business-gradient-4" gradientUnits="userSpaceOnUse" x1="20" y1="14" x2="180" y2="180">
-                  <stop offset="0%" stop-color="#c4b5fd"></stop>
-                  <stop offset="100%" stop-color="#6d28d9"></stop>
-                </linearGradient>
-              </defs>
-              <path data-business-blob-path="" d="M 100 27 C 144 25 176 55 174 100 C 172 144 145 178 99 174 C 56 170 24 147 26 99 C 28 56 54 29 100 27 Z" fill="url(#home-business-gradient-4)"></path>
-            </svg>
-            <span class="home-business-blob-content">
-              <span class="home-business-blob-index">04</span>
-              <strong>有料Q&amp;Aプラットフォーム</strong>
-              <span class="home-business-blob-description">質問と回答を通じて、知りたい情報へたどり着きやすい場を企画・運営しています。</span>
-              <span class="home-business-blob-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
-            </span>
+            <span class="home-business-card-arrow arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span>
           </a>
         </div>
         <a class="home-outline-link reveal-item" style="--delay: 540ms" href="services.html">事業内容を一覧で見る <span class="arrow-button" aria-hidden="true"><svg class="icon-arrow icon-arrow-primary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg><svg class="icon-arrow icon-arrow-secondary" viewBox="0 0 16 16" focusable="false"><path d="M3 13 13 3M7 3h6v6"></path></svg></span></a>
@@ -311,7 +278,7 @@
         <p class="home-section-label home-section-label-light reveal-item">Contact</p>
         <h2 id="contact-title" class="home-contact-title reveal-item" style="--delay: 100ms">事業を動かす相談を、<br>ここから。</h2>
         <div class="home-contact-bottom reveal-item" style="--delay: 220ms">
-          <p>業務支援、Webサービス、EC関連など、今必要なことをお聞かせください。</p>
+          <p>AIコンサルティング事業、BPO事業、IT戦略・システム開発事業など、今必要なことをお聞かせください。</p>
         </div>
       </div>
     </section>
@@ -333,6 +300,6 @@
     </div>
     <p class="copyright home-copyright">&copy; 2026 Gyokuto株式会社</p>
   </footer>
-  <script src="script.js?v=20260909-5"></script>
+  <script src="script.js?v=20260920-13"></script>
 </body>
 </html>

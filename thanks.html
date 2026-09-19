@@ -12,27 +12,56 @@
   <meta property="og:url" content="https://corp.gyokuto-inc.com/thanks.html">
   <meta property="og:image" content="https://corp.gyokuto-inc.com/assets/hero-operations.png">
   <link rel="canonical" href="https://corp.gyokuto-inc.com/thanks.html">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260909-25">
+  <link rel="stylesheet" href="styles.css?v=20260920-43">
 </head>
 <body class="inner-page">
+  <div class="home-morph-background" data-morph-background aria-hidden="true">
+    <svg class="home-morph-background-svg" viewBox="0 0 1400 770" preserveAspectRatio="none" focusable="false">
+      <defs>
+        <linearGradient id="home-morph-gradient" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#c4b5fd"></stop>
+          <stop offset="58%" stop-color="#8b5cf6"></stop>
+          <stop offset="100%" stop-color="#6d28d9"></stop>
+        </linearGradient>
+        <filter id="home-morph-soften" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3"></feGaussianBlur>
+        </filter>
+      </defs>
+      <g class="home-morph-shapes" transform="translate(80 0) scale(1.05)">
+        <path class="home-morph-shadow" d="M 262.9,252.2 C 210.1,338.2 212.6,487.6 288.8,553.9 C 372.2,626.5 511.2,517.8 620.3,536.3 C 750.6,558.4 860.3,723 987.3,686.5 C 1089,657.3 1168,534.7 1173,429.2 C 1178,313.7 1096,189.1 995.1,130.7 C 852.1,47.07 658.8,78.95 498.1,119.2 C 410.7,141.1 322.6,154.8 262.9,252.2 Z"></path>
+        <path class="home-morph-shape" data-morph-path d="M 262.9,252.2 C 210.1,338.2 212.6,487.6 288.8,553.9 C 372.2,626.5 511.2,517.8 620.3,536.3 C 750.6,558.4 860.3,723 987.3,686.5 C 1089,657.3 1168,534.7 1173,429.2 C 1178,313.7 1096,189.1 995.1,130.7 C 852.1,47.07 658.8,78.95 498.1,119.2 C 410.7,141.1 322.6,154.8 262.9,252.2 Z"></path>
+      </g>
+    </svg>
+  </div>
   <header class="site-header home-header">
     <a class="brand home-brand" href="index.html" aria-label="Gyokuto株式会社 トップページ">
-      <span class="home-brand-mark" aria-hidden="true">G</span>
+      <img class="home-brand-image" src="assets/gyokuto-logo-mark.png" alt="">
       <span>Gyokuto</span>
     </a>
     <button class="nav-toggle home-nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">メニュー</button>
     <nav class="site-nav home-nav" aria-label="主要ナビゲーション">
       <a href="index.html#about">私たちについて</a>
-      <a href="index.html#business">事業内容</a>
+      <div class="nav-business">
+        <button class="nav-business-trigger" type="button" aria-expanded="false" aria-controls="business-subnav">
+          <span>事業内容</span>
+          <span class="nav-business-chevron" aria-hidden="true"></span>
+        </button>
+        <div class="nav-business-subnav" id="business-subnav">
+          <a href="ai-it-consulting.html"><span>AIコンサルティング事業</span><span class="nav-business-arrow" aria-hidden="true">↗</span></a>
+          <a href="bpo.html"><span>BPO事業</span><span class="nav-business-arrow" aria-hidden="true">↗</span></a>
+          <a href="web-services.html"><span>IT戦略・システム開発事業</span><span class="nav-business-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
       <a href="company.html">会社概要</a>
       <a class="nav-cta home-nav-cta" href="contact.html">お問い合わせ</a>
     </nav>
   </header>
   <main>
-    <section class="page-hero">
+    <section class="page-hero" data-morph-state="0">
       <div class="container narrow">
         <p class="eyebrow">Thank you</p>
         <h1>お問い合わせを受け付けました。</h1>
@@ -44,21 +73,22 @@
       </div>
     </section>
   </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
+  <footer class="site-footer home-footer" data-morph-state="4">
+    <div class="home-container home-footer-inner">
       <div>
-        <a class="brand footer-brand" href="index.html">Gyokuto株式会社</a>
+        <a class="brand home-footer-brand" href="index.html"><span class="home-brand-mark" aria-hidden="true">G</span><span>Gyokuto</span></a>
         <p>事業の立ち上げと運営を、柔軟に支える。</p>
       </div>
-      <nav class="footer-nav" aria-label="フッターナビゲーション">
-        <a href="services.html">事業内容</a>
+      <nav class="footer-nav home-footer-nav" aria-label="フッターナビゲーション">
+        <a href="index.html#about">私たちについて</a>
+        <a href="index.html#business">事業内容</a>
         <a href="company.html">会社概要</a>
         <a href="contact.html">お問い合わせ</a>
         <a href="privacy.html">プライバシーポリシー</a>
       </nav>
     </div>
-    <p class="copyright">&copy; 2026 Gyokuto株式会社</p>
+    <p class="copyright home-copyright">&copy; 2026 Gyokuto株式会社</p>
   </footer>
-  <script src="script.js?v=20260909-5"></script>
+  <script src="script.js?v=20260920-13"></script>
 </body>
 </html>

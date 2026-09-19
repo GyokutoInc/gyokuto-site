@@ -10,105 +10,13 @@ const navOriginalNextSibling = siteNav?.nextSibling || null;
 let navIsPortaled = false;
 let navScrollY = 0;
 
-function initCursorFollower() {
-  const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-  if (!pointerQuery.matches || reducedMotionQuery.matches) {
-    return;
-  }
-
-  const orb = document.createElement("span");
-  const dot = document.createElement("span");
-  orb.className = "cursor-follower";
-  dot.className = "cursor-follower-dot";
-  orb.setAttribute("aria-hidden", "true");
-  dot.setAttribute("aria-hidden", "true");
-  document.body.append(orb, dot);
-
-  const pointer = { x: -100, y: -100 };
-  const orbPosition = { x: -100, y: -100 };
-  const dotPosition = { x: -100, y: -100 };
-  let active = false;
-  let frame = 0;
-
-  const render = () => {
-    const orbEase = active ? 0.12 : 0.2;
-    const dotEase = active ? 0.28 : 0.2;
-
-    orbPosition.x += (pointer.x - orbPosition.x) * orbEase;
-    orbPosition.y += (pointer.y - orbPosition.y) * orbEase;
-    dotPosition.x += (pointer.x - dotPosition.x) * dotEase;
-    dotPosition.y += (pointer.y - dotPosition.y) * dotEase;
-
-    const orbScale = orb.classList.contains("is-hovering") ? 1.55 : 1;
-    const dotScale = dot.classList.contains("is-hovering") ? 1.25 : 1;
-
-    orb.style.transform = `translate3d(${orbPosition.x.toFixed(2)}px, ${orbPosition.y.toFixed(2)}px, 0) translate(-50%, -50%) scale(${orbScale})`;
-    dot.style.transform = `translate3d(${dotPosition.x.toFixed(2)}px, ${dotPosition.y.toFixed(2)}px, 0) translate(-50%, -50%) scale(${dotScale})`;
-
-    const orbDistance = Math.hypot(pointer.x - orbPosition.x, pointer.y - orbPosition.y);
-    const dotDistance = Math.hypot(pointer.x - dotPosition.x, pointer.y - dotPosition.y);
-
-    if (active || orbDistance > 0.2 || dotDistance > 0.2) {
-      frame = requestAnimationFrame(render);
-    } else {
-      frame = 0;
-    }
-  };
-
-  const requestRender = () => {
-    if (!frame) {
-      frame = requestAnimationFrame(render);
-    }
-  };
-
-  const setHoverState = (event) => {
-    const target = event.target instanceof Element
-      ? event.target.closest("a, button, input, textarea, select, [role=button]")
-      : null;
-
-    orb.classList.toggle("is-hovering", Boolean(target));
-    dot.classList.toggle("is-hovering", Boolean(target));
-  };
-
-  window.addEventListener("pointermove", (event) => {
-    pointer.x = event.clientX;
-    pointer.y = event.clientY;
-    active = true;
-    root.classList.add("has-cursor-follower");
-    setHoverState(event);
-    requestRender();
-  }, { passive: true });
-
-  window.addEventListener("pointerout", (event) => {
-    if (event.relatedTarget) {
-      return;
-    }
-
-    active = false;
-    root.classList.remove("has-cursor-follower");
-    orb.classList.remove("is-hovering");
-    dot.classList.remove("is-hovering");
-    requestRender();
-  }, { passive: true });
-
-  window.addEventListener("pointerdown", () => {
-    orb.classList.add("is-pressing");
-    dot.classList.add("is-pressing");
-  }, { passive: true });
-
-  window.addEventListener("pointerup", () => {
-    orb.classList.remove("is-pressing");
-    dot.classList.remove("is-pressing");
-  }, { passive: true });
-}
-
 function closeNav() {
   if (!navToggle || !siteNav) {
     return;
   }
 
   siteNav.classList.remove("is-open");
+  closeBusinessDropdowns();
   syncNavState();
 }
 
@@ -148,12 +56,130 @@ function syncNavState() {
   }
 
   const effectiveOpen = isMobile && isOpen;
+
+  if (!isMobile || !isOpen) {
+    closeBusinessDropdowns();
+  }
+
   document.documentElement.classList.toggle("nav-is-open", effectiveOpen);
   document.body.classList.toggle("nav-is-open", effectiveOpen);
   navToggle.setAttribute("aria-expanded", String(effectiveOpen));
   navToggle.setAttribute("aria-label", effectiveOpen ? "メニューを閉じる" : "メニューを開く");
   navToggle.textContent = effectiveOpen ? "閉じる" : "メニュー";
 }
+
+function closeBusinessDropdowns() {
+  document.querySelectorAll(".nav-business").forEach((dropdown) => {
+    dropdown.classList.remove("is-open");
+    dropdown.querySelector(".nav-business-trigger")?.setAttribute("aria-expanded", "false");
+  });
+}
+
+function initBusinessDropdowns() {
+  const dropdowns = Array.from(document.querySelectorAll(".nav-business"));
+
+  if (!dropdowns.length) {
+    return;
+  }
+
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  const isMobile = () => window.matchMedia("(max-width: 920px)").matches;
+
+  dropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector(".nav-business-trigger");
+    const menu = dropdown.querySelector(".nav-business-subnav");
+
+    if (!trigger || !menu) {
+      return;
+    }
+
+    const setOpen = (isOpen) => {
+      dropdown.classList.toggle("is-open", isOpen);
+      trigger.setAttribute("aria-expanded", String(isOpen));
+    };
+    let pointerInside = false;
+    let suppressFocusOpen = false;
+
+    menu.querySelectorAll("a").forEach((link) => {
+      const href = (link.getAttribute("href") || "").split("#")[0];
+
+      if (href === currentFile) {
+        link.setAttribute("aria-current", "page");
+      }
+
+      link.addEventListener("click", closeNav);
+    });
+
+    trigger.addEventListener("click", () => {
+      if (!isMobile() && pointerInside) {
+        setOpen(true);
+        return;
+      }
+
+      setOpen(!dropdown.classList.contains("is-open"));
+    });
+
+    dropdown.addEventListener("pointerenter", () => {
+      pointerInside = true;
+
+      if (!isMobile()) {
+        setOpen(true);
+      }
+    });
+
+    dropdown.addEventListener("pointerleave", () => {
+      pointerInside = false;
+
+      if (!isMobile() && !dropdown.contains(document.activeElement)) {
+        setOpen(false);
+      }
+    });
+
+    dropdown.addEventListener("focusin", () => {
+      if (suppressFocusOpen) {
+        suppressFocusOpen = false;
+        return;
+      }
+
+      setOpen(true);
+    });
+    dropdown.addEventListener("focusout", (event) => {
+      if (!dropdown.contains(event.relatedTarget)) {
+        setOpen(false);
+      }
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        setOpen(true);
+        menu.querySelector("a")?.focus();
+      }
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+      }
+    });
+
+    menu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        suppressFocusOpen = true;
+        trigger.focus();
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!dropdown.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+  });
+}
+
+initBusinessDropdowns();
 
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
@@ -177,9 +203,7 @@ if (navToggle && siteNav) {
 
   siteNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      if (link.getAttribute("href")?.startsWith("#")) {
-        closeNav();
-      }
+      closeNav();
     });
   });
 
@@ -288,114 +312,11 @@ function initPinkCubeMotion() {
   requestRender();
 }
 
-function initBusinessBlobButtons() {
-  const blobs = Array.from(document.querySelectorAll("[data-business-blob]"));
-
-  if (!blobs.length) {
-    return;
-  }
-
-  const createPoints = (phaseOffset) => {
-    const pointCount = 10;
-    const angleStep = (Math.PI * 2) / pointCount;
-
-    return Array.from({ length: pointCount }, (_, index) => {
-      const angle = index * angleStep;
-
-      return {
-        angle,
-        baseRadius: 71 + ((index % 4) - 1.5) * 3,
-        phase: phaseOffset + index * 0.82,
-        x: 100 + Math.cos(angle) * 71,
-        y: 100 + Math.sin(angle) * 71
-      };
-    });
-  };
-
-  const createSmoothPath = (points) => {
-    const pointAt = (index) => points[(index + points.length) % points.length];
-    let path = `M ${points[0].x.toFixed(2)} ${points[0].y.toFixed(2)}`;
-
-    points.forEach((current, index) => {
-      const previous = pointAt(index - 1);
-      const next = pointAt(index + 1);
-      const nextNext = pointAt(index + 2);
-      const controlOneX = current.x + (next.x - previous.x) / 6;
-      const controlOneY = current.y + (next.y - previous.y) / 6;
-      const controlTwoX = next.x - (nextNext.x - current.x) / 6;
-      const controlTwoY = next.y - (nextNext.y - current.y) / 6;
-
-      path += ` C ${controlOneX.toFixed(2)} ${controlOneY.toFixed(2)} ${controlTwoX.toFixed(2)} ${controlTwoY.toFixed(2)} ${next.x.toFixed(2)} ${next.y.toFixed(2)}`;
-    });
-
-    return `${path} Z`;
-  };
-
-  blobs.forEach((blob, blobIndex) => {
-    const path = blob.querySelector("[data-business-blob-path]");
-    const gradient = blob.querySelector("linearGradient");
-    const points = createPoints(blobIndex * 1.7);
-    let hoverTarget = 0;
-    let hoverProgress = 0;
-
-    if (!path) {
-      return;
-    }
-
-    const render = (time) => {
-      hoverProgress += (hoverTarget - hoverProgress) * 0.08;
-      const phase = time * 0.00078 + blobIndex * 0.8;
-      const primaryAmplitude = 14 + hoverProgress * 4;
-      const secondaryAmplitude = 7 + hoverProgress * 2;
-      const tertiaryAmplitude = 4 + hoverProgress * 2;
-      const driftAmplitude = 4.5 + hoverProgress * 2.5;
-
-      points.forEach((point) => {
-        const wobble = Math.sin(phase + point.phase) * primaryAmplitude
-          + Math.sin(phase * 0.61 + point.phase * 1.7) * secondaryAmplitude
-          + Math.cos(phase * 0.31 + point.phase * 2.4) * tertiaryAmplitude;
-        const driftX = Math.sin(phase * 0.34 + point.phase) * driftAmplitude;
-        const driftY = Math.cos(phase * 0.29 + point.phase) * driftAmplitude;
-        const radius = point.baseRadius + wobble;
-
-        point.x = 100 + Math.cos(point.angle) * radius + driftX;
-        point.y = 100 + Math.sin(point.angle) * radius + driftY;
-      });
-
-      path.setAttribute("d", createSmoothPath(points));
-
-      if (gradient) {
-        const rotation = 90 + Math.sin(phase * 0.45) * 34;
-        gradient.setAttribute("gradientTransform", `rotate(${rotation.toFixed(2)} 100 100)`);
-      }
-
-      if (!reducedMotionQuery.matches) {
-        requestAnimationFrame(render);
-      }
-    };
-
-    const setHovered = (value) => {
-      hoverTarget = value ? 1 : 0;
-    };
-
-    blob.addEventListener("mouseenter", () => setHovered(true));
-    blob.addEventListener("mouseleave", () => setHovered(false));
-    blob.addEventListener("focusin", () => setHovered(true));
-    blob.addEventListener("focusout", (event) => {
-      if (!blob.contains(event.relatedTarget)) {
-        setHovered(false);
-      }
-    });
-
-    render(0);
-  });
-}
-
 function initMorphingBackground() {
   const morphBackground = document.querySelector("[data-morph-background]");
   const morphPath = morphBackground?.querySelector("[data-morph-path]");
   const morphShadowPath = morphBackground?.querySelector(".home-morph-shadow");
-  const sections = Array.from(document.querySelectorAll(".home-hero, .home-section, .home-contact"));
+  const sections = Array.from(document.querySelectorAll("[data-morph-state]"));
 
   if (!morphBackground || !morphPath || !morphShadowPath) {
     return;
@@ -432,14 +353,6 @@ function initMorphingBackground() {
   };
   const renderPath = (template, points) => template.replace(/__MORPH_(\d+)__/g, (_, index) => Number(points[index]).toFixed(2));
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-  const easeOutElastic = (value) => {
-    if (value === 0 || value === 1) {
-      return value;
-    }
-
-    const period = (2 * Math.PI) / 3;
-    return Math.pow(2, -10 * value) * Math.sin((value * 10 - 0.75) * period) + 1;
-  };
   const easeInOutSine = (value) => -(Math.cos(Math.PI * value) - 1) / 2;
   const interpolate = (from, to, progress) => from.map((point, index) => point + (to[index] - point) * progress);
 
@@ -451,9 +364,11 @@ function initMorphingBackground() {
   const pathTemplate = createPathTemplate(pathStates[0].path);
 
   let currentPoints = [...pathStates[0].points];
-  let currentState = 0;
-  let transition = null;
+  let targetMorphState = 0;
+  let displayMorphState = 0;
+  let morphAnchors = [];
   let loopStartedAt = performance.now();
+  let lastFrameAt = loopStartedAt;
   let animationFrame = 0;
 
   const pointLengths = pathStates.flatMap((state) => [state.points.length, state.altPoints.length]);
@@ -467,71 +382,98 @@ function initMorphingBackground() {
     morphShadowPath.setAttribute("d", path);
   };
 
-  const morphTo = (nextState, duration = 2200) => {
-    if (transition?.state === nextState || (!transition && nextState === currentState)) {
-      return;
+  const measureMorphAnchors = () => {
+    const scrollTop = window.scrollY || window.pageYOffset || 0;
+    const viewportOffset = window.innerHeight * 0.42;
+
+    morphAnchors = sections
+      .map((section) => ({
+        position: section.getBoundingClientRect().top + scrollTop - viewportOffset,
+        state: Number(section.dataset.morphState)
+      }))
+      .filter((anchor) => Number.isFinite(anchor.state))
+      .map((anchor) => ({
+        ...anchor,
+        position: Math.max(0, anchor.position)
+      }))
+      .sort((from, to) => from.position - to.position);
+
+    if (!morphAnchors.length) {
+      morphAnchors = [{ position: 0, state: 0 }];
     }
+
+    morphAnchors[0].position = 0;
+  };
+
+  const getScrollMorphState = (scrollTop) => {
+    if (morphAnchors.length === 1 || scrollTop <= morphAnchors[0].position) {
+      return morphAnchors[0].state;
+    }
+
+    for (let index = 1; index < morphAnchors.length; index += 1) {
+      const previous = morphAnchors[index - 1];
+      const next = morphAnchors[index];
+
+      if (scrollTop <= next.position) {
+        const distance = Math.max(next.position - previous.position, 1);
+        const progress = clamp((scrollTop - previous.position) / distance, 0, 1);
+        return previous.state + (next.state - previous.state) * progress;
+      }
+    }
+
+    return morphAnchors[morphAnchors.length - 1].state;
+  };
+
+  const pointsForMorphState = (morphState, now) => {
+    const safeState = clamp(morphState, 0, pathStates.length - 1);
+    const lowerState = Math.floor(safeState);
+    const upperState = Math.min(lowerState + 1, pathStates.length - 1);
+    const stateProgress = safeState - lowerState;
+    const basePoints = interpolate(pathStates[lowerState].points, pathStates[upperState].points, stateProgress);
+    const altPoints = interpolate(pathStates[lowerState].altPoints, pathStates[upperState].altPoints, stateProgress);
 
     if (reducedMotionQuery.matches) {
-      currentState = nextState;
-      currentPoints = [...pathStates[nextState].points];
-      transition = null;
-      loopStartedAt = performance.now();
-      render(currentPoints);
-      return;
+      return basePoints;
     }
 
-    const from = [...currentPoints];
-    transition = {
-      from,
-      to: [...pathStates[nextState].points],
-      state: nextState,
-      startedAt: performance.now(),
-      duration
-    };
+    const cycleProgress = ((now - loopStartedAt) % 5200) / 5200;
+    const loopProgress = easeInOutSine(0.5 - 0.5 * Math.cos(cycleProgress * Math.PI * 2));
+    return interpolate(basePoints, altPoints, loopProgress);
+  };
+
+  const refreshMorphAnchors = () => {
+    measureMorphAnchors();
+    targetMorphState = getScrollMorphState(window.scrollY || window.pageYOffset || 0);
+
+    if (reducedMotionQuery.matches) {
+      displayMorphState = targetMorphState;
+    }
   };
 
   const tick = (now) => {
-    if (transition) {
-      const progress = clamp((now - transition.startedAt) / transition.duration, 0, 1);
-      currentPoints = interpolate(transition.from, transition.to, easeOutElastic(progress));
+    const deltaTime = Math.min(Math.max(now - lastFrameAt, 0), 80);
+    lastFrameAt = now;
+    targetMorphState = getScrollMorphState(window.scrollY || window.pageYOffset || 0);
 
-      if (progress >= 1) {
-        currentState = transition.state;
-        currentPoints = [...transition.to];
-        transition = null;
-        loopStartedAt = now;
-      }
-    } else if (reducedMotionQuery.matches) {
-      currentPoints = [...pathStates[currentState].points];
+    if (reducedMotionQuery.matches) {
+      displayMorphState = targetMorphState;
     } else {
-      const cycleProgress = ((now - loopStartedAt) % 5200) / 5200;
-      const loopProgress = easeInOutSine(0.5 - 0.5 * Math.cos(cycleProgress * Math.PI * 2));
-      currentPoints = interpolate(pathStates[currentState].points, pathStates[currentState].altPoints, loopProgress);
+      const followProgress = 1 - Math.exp(-deltaTime / 360);
+      displayMorphState += (targetMorphState - displayMorphState) * followProgress;
     }
+
+    currentPoints = pointsForMorphState(displayMorphState, now);
 
     render(currentPoints);
     animationFrame = requestAnimationFrame(tick);
   };
 
-  const observer = "IntersectionObserver" in window
-    ? new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          const state = Number(entry.target.dataset.morphState);
-          if (Number.isInteger(state) && state >= 0 && state < pathStates.length) {
-            morphTo(state);
-          }
-        });
-      }, { rootMargin: "-35% 0px -45% 0px", threshold: 0 })
-    : null;
-
-  sections.forEach((section) => observer?.observe(section));
+  refreshMorphAnchors();
+  window.addEventListener("resize", refreshMorphAnchors, { passive: true });
+  window.addEventListener("load", refreshMorphAnchors, { once: true, passive: true });
   morphBackground.classList.add("is-ready");
-  currentPoints = [...pathStates[0].points];
+  displayMorphState = targetMorphState;
+  currentPoints = pointsForMorphState(displayMorphState, performance.now());
   render(currentPoints);
   animationFrame = requestAnimationFrame(tick);
 }
@@ -627,8 +569,6 @@ function initScrollReveal() {
 
 initScrollCue();
 initHeaderState();
-initCursorFollower();
 initPinkCubeMotion();
-initBusinessBlobButtons();
 initMorphingBackground();
 initScrollReveal();

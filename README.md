@@ -6,9 +6,10 @@ Gyokuto株式会社の静的コーポレートサイトです。HTML / CSS / Jav
 
 - `index.html`: トップページ
 - `services.html`: 事業内容
-- `bpo.html`: BPO・業務支援
-- `web-services.html`: Webサービス・システム企画
-- `ecommerce.html`: 物販・EC関連事業
+- `ai-it-consulting.html`: AIコンサルティング事業
+- `bpo.html`: BPO事業
+- `web-services.html`: IT戦略・システム開発事業
+- `ecommerce.html`: 旧URL向けの事業内容案内
 - `company.html`: 会社概要
 - `contact.html`: お問い合わせ
 - `privacy.html`: プライバシーポリシー
