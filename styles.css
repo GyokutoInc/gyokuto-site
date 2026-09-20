@@ -329,8 +329,7 @@ body.home-page a {
   margin-top: 36px;
 }
 
-.home-text-link,
-.home-outline-link {
+.home-text-link {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -339,8 +338,7 @@ body.home-page a {
   font-weight: 800;
 }
 
-.home-text-link .arrow-button,
-.home-outline-link .arrow-button {
+.home-text-link .arrow-button {
   display: inline-grid;
   width: 44px;
   height: 44px;
@@ -401,7 +399,6 @@ body.home-page a {
 
 .arrow-button:hover,
 .home-text-link:focus-visible .arrow-button,
-.home-outline-link:focus-visible .arrow-button,
 .home-circle-link:focus-visible .arrow-button,
 .home-business-card:focus-visible .arrow-button {
   border-color: var(--arrow-fill);
@@ -410,7 +407,6 @@ body.home-page a {
 
 .arrow-button:hover::before,
 .home-text-link:focus-visible .arrow-button::before,
-.home-outline-link:focus-visible .arrow-button::before,
 .home-circle-link:focus-visible .arrow-button::before,
 .home-business-card:focus-visible .arrow-button::before {
   transform: scale(1);
@@ -418,7 +414,6 @@ body.home-page a {
 
 .arrow-button:hover .icon-arrow-primary,
 .home-text-link:focus-visible .arrow-button .icon-arrow-primary,
-.home-outline-link:focus-visible .arrow-button .icon-arrow-primary,
 .home-circle-link:focus-visible .arrow-button .icon-arrow-primary,
 .home-business-card:focus-visible .arrow-button .icon-arrow-primary {
   transform: translate3d(0, 0, -24px) rotateX(90deg);
@@ -426,7 +421,6 @@ body.home-page a {
 
 .arrow-button:hover .icon-arrow-secondary,
 .home-text-link:focus-visible .arrow-button .icon-arrow-secondary,
-.home-outline-link:focus-visible .arrow-button .icon-arrow-secondary,
 .home-circle-link:focus-visible .arrow-button .icon-arrow-secondary,
 .home-business-card:focus-visible .arrow-button .icon-arrow-secondary {
   color: #fff;
@@ -436,8 +430,7 @@ body.home-page a {
 
 .home-text-link:hover .arrow-button,
 .home-text-link:focus-visible .arrow-button,
-.home-outline-link:hover .arrow-button,
-.home-outline-link:focus-visible .arrow-button {
+.home-text-link:focus-visible .arrow-button {
   transform: translate(4px, -4px);
 }
 
@@ -683,13 +676,6 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
     color: #fff;
     transform: translate(4px, -4px) rotate(8deg);
   }
-}
-
-.home-outline-link {
-  margin-top: 46px;
-  padding-bottom: 9px;
-  border-bottom: 1px solid var(--home-ink);
-  color: var(--home-ink);
 }
 
 .home-information {
@@ -1163,7 +1149,6 @@ html.has-js body.home-page .reveal-item.is-visible {
   body.home-page .home-header,
   body.home-page .home-circle-link .arrow-button,
   body.home-page .home-text-link .arrow-button,
-  body.home-page .home-outline-link .arrow-button,
   body.home-page .home-business-card,
   body.home-page .home-business-card-arrow,
   body.home-page .arrow-button::before,
