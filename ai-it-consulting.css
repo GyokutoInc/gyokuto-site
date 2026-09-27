@@ -1,0 +1,657 @@
+/* AI consulting page: homepage typography and color, with the shared morph visible underneath. */
+body.inner-page.ai-consulting-page {
+  --ai-ink: var(--home-ink, #142634);
+  --ai-muted: var(--home-muted, #687684);
+  --ai-line: var(--home-line, rgba(20, 38, 52, 0.14));
+  --ai-violet: var(--home-violet, #8b5cf6);
+  --ai-violet-dark: var(--home-violet-dark, #6d28d9);
+  background: #fff;
+  color: var(--ai-ink);
+}
+
+body.ai-consulting-page .ai-lp-main {
+  position: relative;
+  z-index: 1;
+  color: var(--ai-ink);
+  background: transparent;
+}
+
+body.ai-consulting-page .ai-lp-main section[id] {
+  scroll-margin-top: 92px;
+}
+
+body.ai-consulting-page .ai-lp-main *,
+body.ai-consulting-page .ai-lp-main *::before,
+body.ai-consulting-page .ai-lp-main *::after {
+  box-sizing: border-box;
+}
+
+body.ai-consulting-page .ai-lp-main .container {
+  width: min(1280px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+body.ai-consulting-page .ai-lp-main h1,
+body.ai-consulting-page .ai-lp-main h2,
+body.ai-consulting-page .ai-lp-main h3,
+body.ai-consulting-page .ai-lp-main p {
+  margin: 0;
+}
+
+body.ai-consulting-page .ai-lp-main h1,
+body.ai-consulting-page .ai-lp-main h2,
+body.ai-consulting-page .ai-lp-main h3 {
+  color: var(--ai-ink);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  text-wrap: pretty;
+}
+
+body.ai-consulting-page .ai-lp-main p {
+  color: var(--ai-muted);
+  font-size: 16px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+body.ai-consulting-page .ai-lp-main a:focus-visible,
+body.ai-consulting-page .ai-lp-main summary:focus-visible {
+  outline: 3px solid var(--ai-violet-dark);
+  outline-offset: 4px;
+}
+
+body.ai-consulting-page .ai-lp-hero {
+  display: flex;
+  min-height: max(700px, 100svh);
+  align-items: center;
+  padding: 136px 0 108px;
+  background: transparent;
+}
+
+.ai-lp-hero-copy {
+  max-width: 760px;
+}
+
+body.ai-consulting-page .ai-lp-hero .ai-lp-kicker {
+  color: var(--ai-violet-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+body.ai-consulting-page .ai-lp-hero h1 {
+  max-width: 780px;
+  margin-top: 24px;
+  font-size: clamp(48px, 6vw, 84px);
+  letter-spacing: -0.085em;
+  line-height: 1.14;
+}
+
+body.ai-consulting-page .ai-lp-hero .ai-lp-hero-description {
+  max-width: 600px;
+  margin-top: 34px;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 2;
+}
+
+.ai-lp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 34px;
+}
+
+body.ai-consulting-page .ai-lp-main .home-text-link {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+body.ai-consulting-page .ai-lp-main .home-text-link-light {
+  color: var(--ai-violet-dark);
+}
+
+body.ai-consulting-page .ai-lp-main .home-text-link-muted {
+  color: var(--ai-muted);
+}
+
+body.ai-consulting-page .ai-lp-section {
+  padding: clamp(88px, 10vw, 144px) 0;
+  background: transparent;
+}
+
+.ai-lp-section-head {
+  max-width: 660px;
+  margin-bottom: 44px;
+}
+
+.ai-lp-section-head-wide {
+  display: grid;
+  max-width: 100%;
+  grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.72fr);
+  gap: clamp(42px, 7vw, 104px);
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+body.ai-consulting-page .ai-lp-section-head h2,
+body.ai-consulting-page .ai-lp-mid-cta h2,
+body.ai-consulting-page .ai-lp-final-cta h2 {
+  font-size: clamp(34px, 3.8vw, 52px);
+  line-height: 1.32;
+}
+
+body.ai-consulting-page .ai-lp-section-head p {
+  max-width: 620px;
+  margin-top: 18px;
+}
+
+.ai-lp-section-head-wide p {
+  max-width: 510px;
+  margin: 0 0 3px;
+}
+
+.ai-lp-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(48px, 8vw, 124px);
+  align-items: start;
+}
+
+body.ai-consulting-page .ai-lp-problems {
+  padding-top: clamp(88px, 10vw, 140px);
+}
+
+.ai-lp-problems .ai-lp-section-head {
+  margin-bottom: 0;
+}
+
+.ai-lp-problem-list {
+  border-top: 1px solid var(--ai-line);
+}
+
+.ai-lp-problem-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: 28px;
+  align-items: baseline;
+  padding: 20px 0 22px;
+  border-bottom: 1px solid var(--ai-line);
+}
+
+body.ai-consulting-page .ai-lp-main h3 {
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.ai-lp-problem-list article p,
+.ai-lp-case-list article p {
+  font-size: 14px;
+}
+
+.ai-lp-service-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(36px, 7vw, 96px);
+}
+
+.ai-lp-service-item {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  column-gap: 18px;
+  align-content: start;
+  padding: 26px 0 30px;
+  border-top: 1px solid var(--ai-line);
+}
+
+.ai-lp-service-index {
+  grid-row: 1 / span 2;
+  padding-top: 4px;
+  color: var(--ai-violet-dark);
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+body.ai-consulting-page .ai-lp-service-item h3 {
+  font-size: clamp(21px, 2vw, 26px);
+}
+
+body.ai-consulting-page .ai-lp-service-item p {
+  max-width: 520px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+body.ai-consulting-page .ai-lp-scope-note {
+  max-width: 820px;
+  margin-top: 26px;
+  font-size: 13px;
+}
+
+body.ai-consulting-page .ai-lp-mid-cta {
+  padding: 54px 0;
+  border-block: 1px solid var(--ai-line);
+  background: transparent;
+}
+
+.ai-lp-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+}
+
+.ai-lp-cta-row > div {
+  max-width: 710px;
+}
+
+body.ai-consulting-page .ai-lp-mid-cta h2 {
+  font-size: clamp(26px, 2.8vw, 37px);
+}
+
+body.ai-consulting-page .ai-lp-cta-row p {
+  margin-top: 13px;
+}
+
+.ai-lp-cta-row .home-text-link {
+  flex: 0 0 auto;
+}
+
+.ai-lp-case-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(34px, 6vw, 82px);
+  align-items: stretch;
+}
+
+.ai-lp-case-feature {
+  display: flex;
+  min-height: 370px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(28px, 4vw, 48px);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.ai-lp-case-category {
+  color: var(--ai-violet-dark) !important;
+  font-size: 12px !important;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+body.ai-consulting-page .ai-lp-case-feature h3 {
+  margin-top: 12px;
+  font-size: clamp(28px, 3vw, 40px);
+}
+
+body.ai-consulting-page .ai-lp-case-feature > p:last-child {
+  max-width: 510px;
+  margin-top: 16px;
+}
+
+.ai-lp-case-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid var(--ai-line);
+}
+
+.ai-lp-case-list article {
+  padding: 18px 0 21px;
+  border-bottom: 1px solid var(--ai-line);
+}
+
+.ai-lp-case-list article h3 {
+  margin-top: 5px !important;
+}
+
+.ai-lp-case-list article p:last-child {
+  max-width: 620px;
+  margin-top: 6px;
+}
+
+.ai-lp-reason-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 54px);
+}
+
+.ai-lp-reason-list article {
+  padding-top: 20px;
+  border-top: 1px solid var(--ai-line);
+}
+
+body.ai-consulting-page .ai-lp-reason-list article h3 {
+  font-size: 19px;
+}
+
+.ai-lp-reason-list article p {
+  margin-top: 11px;
+  font-size: 14px;
+}
+
+.ai-lp-measure-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(26px, 4vw, 58px);
+}
+
+.ai-lp-measure-list article {
+  padding: 24px 0 0;
+  border-top: 1px solid var(--ai-line);
+}
+
+body.ai-consulting-page .ai-lp-measure-list article h3 {
+  font-size: clamp(25px, 2.6vw, 34px);
+}
+
+.ai-lp-measure-list article p {
+  max-width: 330px;
+  margin-top: 11px;
+  font-size: 14px;
+}
+
+body.ai-consulting-page .ai-lp-measure-note {
+  margin-top: 35px;
+  color: var(--ai-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ai-lp-roles .ai-lp-section-head {
+  margin-bottom: 0;
+}
+
+body.ai-consulting-page .ai-lp-roles .ai-lp-section-head h2 {
+  font-size: clamp(32px, 3.3vw, 46px);
+}
+
+.ai-lp-role-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 38px);
+  border-top: 1px solid var(--ai-line);
+}
+
+.ai-lp-role-list article {
+  padding-top: 20px;
+}
+
+.ai-lp-role-list article + article {
+  border-left: 1px solid var(--ai-line);
+  padding-left: clamp(18px, 2.3vw, 30px);
+}
+
+body.ai-consulting-page .ai-lp-role-list article h3 {
+  font-size: 18px;
+}
+
+.ai-lp-role-list article p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.ai-lp-faq-split {
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+}
+
+.ai-lp-faq-split .ai-lp-section-head {
+  margin-bottom: 0;
+}
+
+.ai-lp-faq {
+  border-top: 1px solid var(--ai-line);
+}
+
+.ai-lp-faq details {
+  border-bottom: 1px solid var(--ai-line);
+}
+
+.ai-lp-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+  color: var(--ai-ink);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.65;
+  list-style: none;
+  cursor: pointer;
+}
+
+.ai-lp-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.ai-lp-faq summary::after {
+  flex: 0 0 auto;
+  color: var(--ai-violet-dark);
+  content: "+";
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.ai-lp-faq details[open] summary::after {
+  content: "−";
+}
+
+body.ai-consulting-page .ai-lp-faq details p {
+  max-width: 700px;
+  padding: 0 38px 23px 0;
+  font-size: 14px;
+}
+
+body.ai-consulting-page .ai-lp-final-cta {
+  padding: clamp(96px, 11vw, 150px) 0;
+  border-top: 1px solid var(--ai-line);
+  background: transparent;
+}
+
+body.ai-consulting-page .ai-lp-final-cta h2 {
+  font-size: clamp(39px, 5vw, 68px);
+  line-height: 1.2;
+}
+
+body.ai-consulting-page .ai-lp-final-cta p {
+  max-width: 600px;
+  margin-top: 22px;
+}
+
+@media (max-width: 900px) {
+  .ai-lp-section-head-wide,
+  .ai-lp-split,
+  .ai-lp-faq-split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .ai-lp-section-head-wide {
+    align-items: start;
+    margin-bottom: 38px;
+  }
+
+  .ai-lp-section-head-wide p {
+    margin: 0;
+  }
+
+  .ai-lp-problems .ai-lp-section-head,
+  .ai-lp-roles .ai-lp-section-head,
+  .ai-lp-faq-split .ai-lp-section-head {
+    max-width: 680px;
+  }
+
+  .ai-lp-role-list {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 680px) {
+  body.ai-consulting-page .ai-lp-main section[id] {
+    scroll-margin-top: 76px;
+  }
+
+  body.ai-consulting-page .ai-lp-main .container {
+    width: min(100% - 40px, 1280px);
+  }
+
+  body.ai-consulting-page .ai-lp-hero {
+    min-height: max(680px, 94svh);
+    padding: 114px 0 82px;
+  }
+
+  body.ai-consulting-page .ai-lp-hero h1 {
+    font-size: clamp(33px, 9vw, 48px);
+    line-height: 1.28;
+  }
+
+  body.ai-consulting-page .ai-lp-hero .ai-lp-hero-description {
+    max-width: 520px;
+    margin-top: 26px;
+    font-size: 15px;
+  }
+
+  .ai-lp-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 30px;
+  }
+
+  body.ai-consulting-page .ai-lp-section {
+    padding: 74px 0;
+  }
+
+  .ai-lp-section-head,
+  .ai-lp-section-head-wide {
+    margin-bottom: 33px;
+  }
+
+  body.ai-consulting-page .ai-lp-section-head h2,
+  body.ai-consulting-page .ai-lp-mid-cta h2 {
+    font-size: clamp(30px, 8vw, 38px);
+    line-height: 1.4;
+  }
+
+  body.ai-consulting-page .ai-lp-main p {
+    font-size: 15px;
+  }
+
+  .ai-lp-problem-list article {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+    padding: 18px 0 19px;
+  }
+
+  body.ai-consulting-page .ai-lp-main h3 {
+    font-size: 19px;
+  }
+
+  .ai-lp-service-list,
+  .ai-lp-case-layout,
+  .ai-lp-reason-list,
+  .ai-lp-measure-list,
+  .ai-lp-role-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ai-lp-service-item {
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 14px;
+    padding: 21px 0 23px;
+  }
+
+  body.ai-consulting-page .ai-lp-service-item h3 {
+    font-size: 21px;
+  }
+
+  .ai-lp-case-layout {
+    gap: 25px;
+  }
+
+  .ai-lp-case-feature {
+    min-height: 260px;
+    padding: 25px;
+    border-radius: 14px;
+  }
+
+  body.ai-consulting-page .ai-lp-case-feature h3 {
+    font-size: 29px;
+  }
+
+  .ai-lp-case-list article {
+    padding: 17px 0 18px;
+  }
+
+  .ai-lp-reason-list {
+    gap: 0;
+  }
+
+  .ai-lp-reason-list article {
+    padding: 18px 0 21px;
+  }
+
+  .ai-lp-measure-list {
+    gap: 0;
+  }
+
+  .ai-lp-measure-list article {
+    padding: 19px 0 20px;
+  }
+
+  body.ai-consulting-page .ai-lp-measure-list article h3 {
+    font-size: 25px;
+  }
+
+  body.ai-consulting-page .ai-lp-measure-note {
+    margin-top: 24px;
+  }
+
+  body.ai-consulting-page .ai-lp-mid-cta {
+    padding: 41px 0;
+  }
+
+  .ai-lp-cta-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ai-lp-role-list {
+    gap: 0;
+  }
+
+  .ai-lp-role-list article {
+    padding: 17px 0 20px;
+    border-bottom: 1px solid var(--ai-line);
+  }
+
+  .ai-lp-role-list article + article {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .ai-lp-faq summary {
+    gap: 17px;
+    padding: 18px 0;
+    font-size: 15px;
+  }
+
+  body.ai-consulting-page .ai-lp-final-cta {
+    padding: 82px 0;
+  }
+
+  body.ai-consulting-page .ai-lp-final-cta h2 {
+    font-size: clamp(36px, 9.5vw, 48px);
+  }
+
+  body.ai-consulting-page .ai-lp-final-cta p {
+    margin-top: 18px;
+  }
+}
