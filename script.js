@@ -675,9 +675,45 @@ function initScrollReveal() {
   uniqueTargets.forEach((item) => observer.observe(item));
 }
 
+function initUseCaseTabs() {
+  document.querySelectorAll("[data-ai-tabs]").forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+
+    const select = (index, focus) => {
+      tabs.forEach((tab, i) => {
+        const active = i === index;
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (panels[i]) {
+          panels[i].hidden = !active;
+        }
+      });
+      if (focus) {
+        tabs[index].focus();
+      }
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => select(index, false));
+      tab.addEventListener("keydown", (event) => {
+        const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+        if (event.key in keys) {
+          event.preventDefault();
+          select((index + keys[event.key] + tabs.length) % tabs.length, true);
+        }
+      });
+    });
+
+    root.classList.add("is-tabbed");
+    select(0, false);
+  });
+}
+
 initCursorFollower();
 initScrollCue();
 initHeaderState();
 initPinkCubeMotion();
 initMorphingBackground();
 initScrollReveal();
+initUseCaseTabs();
