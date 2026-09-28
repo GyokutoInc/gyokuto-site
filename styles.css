@@ -3571,19 +3571,12 @@ body.inner-page.bpo-page .bpo-num {
   letter-spacing: 0.14em;
 }
 
-body.inner-page.bpo-page .bpo-task-grid,
+body.inner-page.bpo-page .bpo-task-list,
 body.inner-page.bpo-page .bpo-flow,
 body.inner-page.bpo-page .bpo-range ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-body.inner-page.bpo-page .bpo-task {
-  padding: clamp(26px, 3vw, 36px);
-  border: 1px solid var(--inner-line);
-  border-radius: var(--bpo-radius);
-  background: var(--bpo-card);
 }
 
 body.inner-page.bpo-page .bpo-task h3,
@@ -3603,97 +3596,93 @@ body.inner-page.bpo-page .bpo-flow p {
 }
 
 /* Tasks */
-body.inner-page.bpo-page .bpo-task-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
-body.inner-page.bpo-page .bpo-task {
-  display: flex;
-  flex-direction: column;
-}
-
-body.inner-page.bpo-page .bpo-task h3 {
-  margin-top: 12px;
-}
-
-body.inner-page.bpo-page .bpo-task .bpo-task-output {
-  margin-top: auto;
-  padding-top: 18px;
-  color: var(--bpo-accent-dark);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-body.inner-page.bpo-page .bpo-task .bpo-task-output::before {
-  display: inline-block;
-  margin-right: 8px;
-  padding: 2px 8px;
-  content: "納品物";
-  border-radius: 999px;
-  color: #fff;
-  background: var(--bpo-accent);
-  font-size: 11px;
-  vertical-align: 1px;
-}
-
-body.inner-page.bpo-page .bpo-related {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  align-items: center;
-  margin-top: 40px;
-  padding-top: 32px;
+body.inner-page.bpo-page .bpo-task-list {
   border-top: 1px solid var(--inner-line);
 }
 
-body.inner-page.bpo-page .bpo-related-title {
-  margin: 0;
-  color: var(--inner-ink);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.7;
-}
-
-body.inner-page.bpo-page .bpo-related-link {
+body.inner-page.bpo-page .bpo-task {
   position: relative;
-  display: block;
-  padding: 16px 44px 16px 20px;
-  border: 1px solid var(--inner-line);
-  border-radius: 12px;
-  color: var(--inner-ink);
-  background: var(--bpo-card);
-  text-decoration: none;
-  transition: border-color 200ms ease, color 200ms ease;
+  display: grid;
+  grid-template-columns: 64px 56px minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: center;
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--inner-line);
+  transition: background-color 240ms ease;
 }
 
-body.inner-page.bpo-page .bpo-related-link::after {
+body.inner-page.bpo-page .bpo-task::before {
   position: absolute;
-  top: 50%;
-  right: 20px;
-  content: "→";
-  color: var(--bpo-accent-dark);
-  transform: translateY(-50%);
+  top: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  content: "";
+  background: var(--bpo-accent);
+  transition: width 360ms ease;
 }
 
-body.inner-page.bpo-page .bpo-related-link:hover,
-body.inner-page.bpo-page .bpo-related-link:focus-visible {
-  border-color: var(--bpo-accent);
-  color: var(--bpo-accent-dark);
+body.inner-page.bpo-page .bpo-task:hover {
+  background: rgba(255, 255, 255, 0.72);
 }
 
-body.inner-page.bpo-page .bpo-related-link span {
-  display: block;
+body.inner-page.bpo-page .bpo-task:hover::before {
+  width: 100%;
+}
+
+body.inner-page.bpo-page .bpo-task-num {
+  color: var(--bpo-accent);
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+body.inner-page.bpo-page .bpo-task-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--bpo-accent-dark);
+  background: rgba(139, 92, 246, 0.1);
+  transition: color 240ms ease, background-color 240ms ease;
+}
+
+body.inner-page.bpo-page .bpo-task:hover .bpo-task-icon {
+  color: #fff;
+  background: var(--bpo-accent);
+}
+
+body.inner-page.bpo-page .bpo-task-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+body.inner-page.bpo-page .bpo-task h3 {
+  font-size: 21px;
+}
+
+body.inner-page.bpo-page .bpo-task-body p {
+  margin-top: 6px;
+}
+
+body.inner-page.bpo-page .bpo-task .bpo-task-output {
+  margin: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--inner-line);
+  color: var(--inner-ink);
   font-size: 15px;
   font-weight: 700;
+  line-height: 1.5;
 }
 
-body.inner-page.bpo-page .bpo-related-link small {
+body.inner-page.bpo-page .bpo-task-output span {
   display: block;
-  margin-top: 2px;
-  color: var(--inner-muted);
-  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--bpo-accent-dark);
+  font-size: 11px;
+  letter-spacing: 0.12em;
 }
 
 /* Process */
@@ -4003,12 +3992,31 @@ body.inner-page.bpo-page #bpo-faq {
     grid-template-columns: 1fr;
   }
 
-  body.inner-page.bpo-page .bpo-related {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  body.inner-page.bpo-page .bpo-task {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 12px 20px;
   }
 
-  body.inner-page.bpo-page .bpo-related-title {
-    grid-column: 1 / -1;
+  body.inner-page.bpo-page .bpo-task-num {
+    grid-row: 1 / 3;
+    align-self: start;
+    font-size: 28px;
+  }
+
+  body.inner-page.bpo-page .bpo-task-icon {
+    display: none;
+  }
+
+  body.inner-page.bpo-page .bpo-task .bpo-task-output {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  body.inner-page.bpo-page .bpo-task-output span {
+    margin-bottom: 0;
   }
 
   body.inner-page.bpo-page .bpo-flow {
@@ -4061,10 +4069,17 @@ body.inner-page.bpo-page #bpo-faq {
     font-size: 15px;
   }
 
-  body.inner-page.bpo-page .bpo-task-grid,
-  body.inner-page.bpo-page .bpo-related {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  body.inner-page.bpo-page .bpo-task {
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 24px 4px;
+  }
+
+  body.inner-page.bpo-page .bpo-task-num {
+    font-size: 22px;
+  }
+
+  body.inner-page.bpo-page .bpo-task h3 {
+    font-size: 18px;
   }
 
   body.inner-page.bpo-page .bpo-price-factors {
