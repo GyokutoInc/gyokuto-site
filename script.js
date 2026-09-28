@@ -229,6 +229,10 @@ function initBusinessDropdowns() {
     });
 
     dropdown.addEventListener("focusin", () => {
+      if (isMobile()) {
+        return;
+      }
+
       if (suppressFocusOpen) {
         suppressFocusOpen = false;
         return;
@@ -786,10 +790,19 @@ if (document.body.classList.contains("sd-page")) {
   const list = document.querySelector(".sd-ticker-list");
   if (list && !reduce) {
     let n = 0; const count = list.children.length - 1;
+    const win = list.parentElement;
+    const fit = () => {
+      const range = document.createRange();
+      range.selectNodeContents(list.children[n]);
+      win.style.width = `${Math.ceil(range.getBoundingClientRect().width)}px`;
+    };
+    win.style.transition = "width 700ms var(--sd-ease)";
+    fit();
     setInterval(() => {
       n += 1;
       list.style.transition = "";
       list.style.transform = `translateY(${-n * 1.5}em)`;
+      fit();
       if (n === count) {
         setTimeout(() => { list.style.transition = "none"; list.style.transform = "translateY(0)"; n = 0; }, 750);
       }
