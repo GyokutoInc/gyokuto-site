@@ -8079,9 +8079,11 @@ body.inner-page.sd-page .sd-label { display: inline-flex; align-items: center; g
 /* hero */
 .sd-hero { position: relative; display: grid; min-height: 100svh; align-items: center; padding: 120px 0 80px; overflow: hidden; }
 .sd-hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 40px; align-items: center; }
-.sd-hero h1 { margin: 22px 0 0; font-size: clamp(38px, 5vw, 76px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.12; }
-.sd-hero h1 .sd-grad { background: linear-gradient(100deg, #24133f 5%, #6d28d9 45%, #8b5cf6 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.sd-ticker { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; margin: 30px 0 0; font-size: clamp(17px, 1.7vw, 22px); font-weight: 700; }
+.sd-hero h1 { margin: 22px 0 0; font-size: clamp(36px, 4.6vw, 64px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.18; }
+.sd-keep { display: inline-block; }
+body.inner-page.sd-page .sd-catch { margin: 22px 0 0; color: var(--sd-text); font-size: clamp(22px, 2.4vw, 32px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.5; }
+.sd-catch .sd-grad { background: linear-gradient(100deg, #24133f 5%, #6d28d9 45%, #8b5cf6 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sd-ticker { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; margin: 18px 0 0; font-size: clamp(15px, 1.4vw, 18px); font-weight: 700; }
 .sd-ticker-window { position: relative; display: inline-block; height: 1.5em; overflow: hidden; vertical-align: bottom; }
 .sd-ticker-list { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; transition: transform 700ms var(--sd-ease); }
 .sd-ticker-list span { height: 1.5em; line-height: 1.5em; color: var(--sd-violet-2); white-space: nowrap; }
