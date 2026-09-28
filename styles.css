@@ -6601,9 +6601,11 @@ body.inner-page.system-page .service-cta-section {
 }
 
 body.inner-page.ai-consulting-page {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
   --ai-accent: #8b5cf6;
   --ai-accent-dark: #6d28d9;
-  --ai-copy-width: 720px;
+  --ai-card: rgba(255, 255, 255, 0.9);
+  --ai-radius: 16px;
 }
 
 body.inner-page.ai-consulting-page .home-morph-shape {
@@ -6614,61 +6616,45 @@ body.inner-page.ai-consulting-page .home-morph-shadow {
   opacity: 0.08;
 }
 
-body.inner-page.ai-consulting-page .ai-hero {
-  padding-top: clamp(76px, 9vw, 124px);
-  padding-bottom: clamp(72px, 9vw, 126px);
+body.inner-page.ai-consulting-page h2,
+body.inner-page.ai-consulting-page h3 {
+  letter-spacing: -0.02em;
 }
 
-body.inner-page.ai-consulting-page .ai-hero::after {
-  position: absolute;
-  top: 9%;
-  right: -9%;
-  width: clamp(280px, 38vw, 560px);
-  aspect-ratio: 1;
-  content: "";
-  border: 1px solid rgba(109, 40, 217, 0.14);
-  border-radius: 47% 53% 59% 41%;
-  pointer-events: none;
-  transform: rotate(-18deg);
-}
-
-body.inner-page.ai-consulting-page .ai-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-}
-
-body.inner-page.ai-consulting-page .ai-hero-copy {
-  position: relative;
-  z-index: 1;
-  max-width: 980px;
-}
-
-body.inner-page.ai-consulting-page .ai-hero h1 {
-  max-width: 920px;
-  font-size: clamp(48px, 6.5vw, 86px);
-  letter-spacing: -0.1em;
-  line-height: 1.06;
-}
-
-body.inner-page.ai-consulting-page .ai-hero-mobile-title {
+body.inner-page.ai-consulting-page .ai-sp-only {
   display: none;
 }
 
-body.inner-page.ai-consulting-page .ai-hero-tagline {
-  max-width: var(--ai-copy-width) !important;
-  margin-top: 28px !important;
-  color: var(--inner-ink) !important;
-  font-size: clamp(21px, 2.6vw, 34px) !important;
-  font-weight: 700;
-  letter-spacing: -0.06em;
-  line-height: 1.55 !important;
+/* Hero */
+body.inner-page.ai-consulting-page .ai-hero {
+  padding-top: clamp(76px, 9vw, 124px);
+  padding-bottom: clamp(72px, 9vw, 120px);
 }
 
-body.inner-page.ai-consulting-page .ai-hero-copy > p:not(.eyebrow):not(.ai-hero-tagline) {
-  max-width: var(--ai-copy-width);
-  margin-top: 24px;
-  font-size: clamp(15px, 1.35vw, 18px);
-  line-height: 2;
+body.inner-page.ai-consulting-page .ai-hero::before {
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 180px), transparent);
+  mask-image: linear-gradient(180deg, #000 calc(100% - 180px), transparent);
+}
+
+body.inner-page.ai-consulting-page .ai-hero h1 {
+  margin-top: 14px;
+  font-size: clamp(40px, 5.2vw, 68px);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+body.inner-page.ai-consulting-page .ai-hero .ai-hero-lead {
+  margin-top: 22px;
+  color: var(--inner-ink);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+
+body.inner-page.ai-consulting-page .ai-hero .ai-hero-lead + p {
+  max-width: 600px;
+  margin-top: 20px;
 }
 
 body.inner-page.ai-consulting-page .ai-hero-actions {
@@ -6676,417 +6662,277 @@ body.inner-page.ai-consulting-page .ai-hero-actions {
   flex-wrap: wrap;
   align-items: center;
   gap: 24px;
-  margin-top: 34px;
+  margin-top: 36px;
 }
 
 body.inner-page.ai-consulting-page .ai-hero-actions .button {
-  min-height: 48px;
-  padding: 13px 22px;
+  min-width: 160px;
+  min-height: 50px;
+  padding: 13px 28px;
+  border-radius: 999px;
 }
 
 body.inner-page.ai-consulting-page .ai-hero-actions .text-link {
   margin-top: 0;
 }
 
-body.inner-page.ai-consulting-page .ai-section-heading {
-  max-width: 1000px;
-  margin-bottom: clamp(34px, 5vw, 66px);
+/* Shared section parts */
+body.inner-page.ai-consulting-page .ai-heading {
+  margin-bottom: clamp(32px, 4vw, 52px);
 }
 
-body.inner-page.ai-consulting-page .ai-section-heading h2 {
-  max-width: 820px;
+body.inner-page.ai-consulting-page .ai-heading h2 {
   margin-top: 12px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.3;
 }
 
-body.inner-page.ai-consulting-page #ai-process .ai-section-heading h2 {
-  max-width: 1000px;
+body.inner-page.ai-consulting-page .ai-heading > p:not(.eyebrow) {
+  max-width: 640px;
+  margin-top: 16px;
+  color: var(--inner-muted);
 }
 
-body.inner-page.ai-consulting-page .ai-section-heading > p:last-child {
-  max-width: var(--ai-copy-width);
-  margin-top: 20px;
-  line-height: 1.9;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range {
-  border-top: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-item {
-  display: grid;
-  grid-template-columns: 64px minmax(260px, 0.92fr) minmax(300px, 1.08fr);
-  gap: clamp(24px, 4vw, 64px);
-  padding: clamp(38px, 5vw, 66px) 0;
-  border-bottom: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-number,
-body.inner-page.ai-consulting-page .ai-work-example-heading > span,
-body.inner-page.ai-consulting-page .ai-routing-item > span {
+body.inner-page.ai-consulting-page .ai-num {
+  display: block;
   color: var(--ai-accent-dark);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
 }
 
-body.inner-page.ai-consulting-page .ai-service-range-main h3 {
-  margin: 0 0 16px;
-  color: var(--inner-ink);
-  font-size: clamp(28px, 3.2vw, 44px);
-  letter-spacing: -0.07em;
-  line-height: 1.24;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-main p,
-body.inner-page.ai-consulting-page .ai-service-range-detail,
-body.inner-page.ai-consulting-page .ai-work-example-details dd,
-body.inner-page.ai-consulting-page .ai-routing-item p,
-body.inner-page.ai-consulting-page .ai-two-column p,
-body.inner-page.ai-consulting-page .ai-process-list p,
-body.inner-page.ai-consulting-page .ai-faq p {
-  line-height: 1.9;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-main p {
-  margin: 0;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-detail {
-  display: grid;
-  grid-template-columns: minmax(96px, 0.32fr) minmax(0, 1fr);
-  gap: 8px 20px;
-  align-content: start;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-detail h4 {
-  margin: 0;
-  color: var(--inner-ink);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-detail ul {
-  display: grid;
-  gap: 5px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-detail li {
-  position: relative;
-  padding-left: 14px;
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-detail li::before {
-  position: absolute;
-  top: 0.82em;
-  left: 0;
-  width: 6px;
-  height: 1px;
-  content: "";
-  background: var(--ai-accent);
-}
-
-body.inner-page.ai-consulting-page .ai-service-range-detail h4:nth-of-type(2) {
-  margin-top: 18px;
-}
-
-body.inner-page.ai-consulting-page .ai-note {
-  margin-top: 26px !important;
-  padding-top: 16px;
-  border-top: 1px solid rgba(109, 40, 217, 0.26);
+body.inner-page.ai-consulting-page .ai-small {
+  margin: 24px 0 0;
   color: var(--inner-muted);
   font-size: 13px;
 }
 
-body.inner-page.ai-consulting-page .ai-work-example-list {
-  border-top: 1px solid var(--inner-ink);
-}
-
-body.inner-page.ai-consulting-page .ai-work-example {
-  padding: clamp(34px, 5vw, 62px) 0;
-  border-bottom: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-work-example-heading {
-  display: grid;
-  grid-template-columns: minmax(120px, 0.25fr) minmax(0, 0.75fr);
-  gap: clamp(22px, 4vw, 64px);
-  align-items: start;
-}
-
-body.inner-page.ai-consulting-page .ai-work-example-heading h3 {
+body.inner-page.ai-consulting-page .ai-example-grid,
+body.inner-page.ai-consulting-page .ai-service-grid,
+body.inner-page.ai-consulting-page .ai-flow,
+body.inner-page.ai-consulting-page .ai-example ul,
+body.inner-page.ai-consulting-page .ai-service ul,
+body.inner-page.ai-consulting-page .ai-scope ul {
   margin: 0;
-  color: var(--inner-ink);
-  font-size: clamp(23px, 2.7vw, 36px);
-  letter-spacing: -0.06em;
-  line-height: 1.35;
-}
-
-body.inner-page.ai-consulting-page .ai-work-example-details {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 32px 0 0;
   padding: 0;
+  list-style: none;
 }
 
-body.inner-page.ai-consulting-page .ai-work-example-details > div {
-  padding: 0 clamp(18px, 2.8vw, 36px);
-  border-left: 1px solid var(--inner-line);
+body.inner-page.ai-consulting-page .ai-example,
+body.inner-page.ai-consulting-page .ai-service,
+body.inner-page.ai-consulting-page .ai-scope {
+  padding: clamp(26px, 3vw, 36px);
+  border: 1px solid var(--inner-line);
+  border-radius: var(--ai-radius);
+  background: var(--ai-card);
 }
 
-body.inner-page.ai-consulting-page .ai-work-example-details > div:first-child {
-  padding-left: 0;
-  border-left: 0;
-}
-
-body.inner-page.ai-consulting-page .ai-work-example-details dt {
-  margin-bottom: 10px;
-  color: var(--ai-accent-dark);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-body.inner-page.ai-consulting-page .ai-work-example-details dd {
+body.inner-page.ai-consulting-page .ai-example h3,
+body.inner-page.ai-consulting-page .ai-service h3,
+body.inner-page.ai-consulting-page .ai-scope h3,
+body.inner-page.ai-consulting-page .ai-flow h3 {
   margin: 0;
-  font-size: 14px;
-}
-
-body.inner-page.ai-consulting-page .ai-routing-layout {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--inner-line);
-  border-bottom: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-routing-center {
-  grid-column: 1 / -1;
-  justify-self: center;
-  margin: 0;
-  padding: 22px 36px;
   color: var(--inner-ink);
   font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  border-bottom: 1px solid var(--inner-line);
+  line-height: 1.45;
 }
 
-body.inner-page.ai-consulting-page .ai-routing-item {
-  min-height: 260px;
-  padding: 28px clamp(20px, 3vw, 38px) 34px 0;
-}
-
-body.inner-page.ai-consulting-page .ai-routing-item + .ai-routing-item {
-  padding-left: clamp(20px, 3vw, 38px);
-  border-left: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-routing-item h3 {
-  margin: 24px 0 12px;
-  color: var(--inner-ink);
-  font-size: clamp(20px, 2.2vw, 28px);
-  letter-spacing: -0.05em;
-  line-height: 1.35;
-}
-
-body.inner-page.ai-consulting-page .ai-routing-item p {
-  margin: 0;
-  font-size: 14px;
-}
-
-body.inner-page.ai-consulting-page .ai-routing-item .text-link {
-  display: inline-block;
-  margin-top: 22px;
-}
-
-body.inner-page.ai-consulting-page .ai-two-column {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
-  gap: clamp(48px, 9vw, 140px);
-  align-items: start;
-}
-
-body.inner-page.ai-consulting-page .ai-section-side h2 {
-  max-width: 540px;
+body.inner-page.ai-consulting-page .ai-example p,
+body.inner-page.ai-consulting-page .ai-service p,
+body.inner-page.ai-consulting-page .ai-scope p,
+body.inner-page.ai-consulting-page .ai-flow p {
   margin: 12px 0 0;
-  color: var(--inner-ink);
-  font-size: clamp(30px, 4vw, 52px);
-  letter-spacing: -0.07em;
-  line-height: 1.3;
-}
-
-body.inner-page.ai-consulting-page .ai-section-main {
-  max-width: 760px;
-}
-
-body.inner-page.ai-consulting-page .ai-section-main > p:first-child {
-  margin-top: 0;
-}
-
-body.inner-page.ai-consulting-page .ai-deliverables-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 28px;
-  margin: 30px 0 0;
-  padding: 0;
-  list-style-position: inside;
-  border-top: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-deliverables-list li {
-  padding: 13px 0;
-  border-bottom: 1px solid var(--inner-line);
-  font-size: 14px;
-}
-
-body.inner-page.ai-consulting-page .ai-deliverables-list li::marker,
-body.inner-page.ai-consulting-page .ai-pricing-list li::marker {
-  color: var(--ai-accent-dark);
-  font-weight: 700;
-}
-
-body.inner-page.ai-consulting-page .ai-process-list {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-process-list li {
-  position: relative;
-  display: grid;
-  grid-template-columns: 64px minmax(0, 1fr) minmax(220px, 0.56fr);
-  gap: clamp(20px, 4vw, 58px);
-  padding: 34px 0;
-  border-bottom: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-process-list li::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 27px;
-  z-index: 0;
-  width: 1px;
-  content: "";
-  background: rgba(139, 92, 246, 0.28);
-}
-
-body.inner-page.ai-consulting-page .ai-process-list li > span {
-  position: relative;
-  z-index: 1;
-  color: var(--ai-accent-dark);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-body.inner-page.ai-consulting-page .ai-process-list h3 {
-  margin: 0 0 11px;
-  color: var(--inner-ink);
-  font-size: 22px;
-}
-
-body.inner-page.ai-consulting-page .ai-process-list li > div {
-  position: relative;
-  z-index: 1;
-  background: transparent;
-}
-
-body.inner-page.ai-consulting-page .ai-process-side {
-  align-self: start;
-}
-
-body.inner-page.ai-consulting-page .ai-process-list p {
-  margin: 0;
-  font-size: 14px;
-}
-
-body.inner-page.ai-consulting-page .ai-process-meta {
-  margin-top: 13px !important;
   color: var(--inner-muted);
-  font-size: 12px !important;
+  font-size: 15px;
+  line-height: 1.85;
 }
 
-body.inner-page.ai-consulting-page .ai-process-side .ai-process-meta:first-child {
-  margin-top: 0 !important;
-}
-
-body.inner-page.ai-consulting-page .ai-process-meta strong {
-  display: block;
-  color: var(--inner-ink);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-}
-
-body.inner-page.ai-consulting-page .ai-process-period,
-body.inner-page.ai-consulting-page .ai-process-decision {
-  max-width: var(--ai-copy-width);
-  margin: 34px 0 0;
-  line-height: 1.9;
-}
-
-body.inner-page.ai-consulting-page .ai-process-decision {
-  margin-top: 14px;
-  color: var(--ai-accent-dark);
-  font-weight: 700;
-}
-
-body.inner-page.ai-consulting-page .ai-plain-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 24px;
-  margin: 26px 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-plain-list li {
+body.inner-page.ai-consulting-page .ai-service li,
+body.inner-page.ai-consulting-page .ai-scope li {
   position: relative;
-  padding: 13px 0 13px 16px;
-  border-bottom: 1px solid var(--inner-line);
+  padding: 10px 0 10px 18px;
+  border-top: 1px solid var(--inner-line);
+  color: var(--inner-ink);
   font-size: 14px;
+  line-height: 1.6;
 }
 
-body.inner-page.ai-consulting-page .ai-plain-list li::before {
+body.inner-page.ai-consulting-page .ai-service li::before,
+body.inner-page.ai-consulting-page .ai-scope li::before {
   position: absolute;
-  top: 1.05em;
+  top: 1.2em;
   left: 0;
   width: 6px;
-  height: 1px;
+  height: 6px;
   content: "";
+  border-radius: 50%;
   background: var(--ai-accent);
 }
 
-body.inner-page.ai-consulting-page .ai-subheading {
-  margin: 30px 0 12px;
-  color: var(--inner-ink);
-  font-size: 16px;
-}
-
-body.inner-page.ai-consulting-page .ai-pricing-list {
+/* Examples */
+body.inner-page.ai-consulting-page .ai-example-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 28px;
-  margin: 0;
-  padding-left: 22px;
+  gap: 20px;
+}
+
+body.inner-page.ai-consulting-page .ai-example {
+  display: flex;
+  flex-direction: column;
+}
+
+body.inner-page.ai-consulting-page .ai-example .ai-example-check {
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--ai-accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body.inner-page.ai-consulting-page .ai-example p + .ai-example-check {
+  margin-top: auto;
+}
+
+body.inner-page.ai-consulting-page .ai-example .ai-example-check::before {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  content: "人が確認";
+  border-radius: 999px;
+  color: #fff;
+  background: var(--ai-accent);
+  font-size: 11px;
+  vertical-align: 1px;
+}
+
+/* Services */
+body.inner-page.ai-consulting-page .ai-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+body.inner-page.ai-consulting-page .ai-service h3 {
+  margin-top: 14px;
+  font-size: 22px;
+}
+
+body.inner-page.ai-consulting-page .ai-service .ai-service-label {
+  margin: 24px 0 8px;
+  color: var(--inner-ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+body.inner-page.ai-consulting-page .ai-related {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 32px;
   border-top: 1px solid var(--inner-line);
 }
 
-body.inner-page.ai-consulting-page .ai-pricing-list li {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--inner-line);
+body.inner-page.ai-consulting-page .ai-related-title {
+  margin: 0;
+  color: var(--inner-ink);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+body.inner-page.ai-consulting-page .ai-related-link {
+  position: relative;
+  display: block;
+  padding: 16px 44px 16px 20px;
+  border: 1px solid var(--inner-line);
+  border-radius: 12px;
+  color: var(--inner-ink);
+  background: var(--ai-card);
+  text-decoration: none;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+body.inner-page.ai-consulting-page .ai-related-link::after {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  content: "→";
+  color: var(--ai-accent-dark);
+  transform: translateY(-50%);
+}
+
+body.inner-page.ai-consulting-page .ai-related-link:hover,
+body.inner-page.ai-consulting-page .ai-related-link:focus-visible {
+  border-color: var(--ai-accent);
+  color: var(--ai-accent-dark);
+}
+
+body.inner-page.ai-consulting-page .ai-related-link span {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+body.inner-page.ai-consulting-page .ai-related-link small {
+  display: block;
+  margin-top: 2px;
+  color: var(--inner-muted);
+  font-size: 12px;
+}
+
+/* Process */
+body.inner-page.ai-consulting-page .ai-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+}
+
+body.inner-page.ai-consulting-page .ai-flow li {
+  position: relative;
+  padding: 28px 24px 0 0;
+  border-top: 2px solid var(--inner-line);
+}
+
+body.inner-page.ai-consulting-page .ai-flow li::before {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  content: "";
+  border-radius: 50%;
+  background: var(--ai-accent);
+  box-shadow: 0 0 0 4px #fff;
+}
+
+body.inner-page.ai-consulting-page .ai-flow h3 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+body.inner-page.ai-consulting-page .ai-flow p {
   font-size: 14px;
 }
 
+/* Pricing & scope */
+body.inner-page.ai-consulting-page .ai-scope-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+body.inner-page.ai-consulting-page .ai-scope ul {
+  margin-top: 14px;
+}
+
+/* FAQ */
 body.inner-page.ai-consulting-page .ai-faq-grid {
   display: grid;
-  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
-  gap: clamp(48px, 9vw, 140px);
+  grid-template-columns: minmax(220px, 0.6fr) minmax(0, 1.4fr);
+  gap: clamp(40px, 7vw, 112px);
   align-items: start;
 }
 
@@ -7101,7 +6947,7 @@ body.inner-page.ai-consulting-page .ai-faq-list details {
 body.inner-page.ai-consulting-page .ai-faq-list summary {
   position: relative;
   display: block;
-  padding: 22px 42px 22px 0;
+  padding: 22px 44px 22px 0;
   color: var(--inner-ink);
   font-size: 16px;
   font-weight: 700;
@@ -7115,288 +6961,166 @@ body.inner-page.ai-consulting-page .ai-faq-list summary::-webkit-details-marker 
 
 body.inner-page.ai-consulting-page .ai-faq-toggle {
   position: absolute;
-  top: 21px;
-  right: 6px;
-  color: var(--ai-accent-dark);
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1;
+  top: 50%;
+  right: 8px;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
 }
 
-body.inner-page.ai-consulting-page .ai-faq-list details[open] .ai-faq-toggle {
-  font-size: 0;
+body.inner-page.ai-consulting-page .ai-faq-toggle::before,
+body.inner-page.ai-consulting-page .ai-faq-toggle::after {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  content: "";
+  background: var(--ai-accent-dark);
+  transition: transform 200ms ease;
+}
+
+body.inner-page.ai-consulting-page .ai-faq-toggle::after {
+  transform: rotate(90deg);
 }
 
 body.inner-page.ai-consulting-page .ai-faq-list details[open] .ai-faq-toggle::after {
-  font-size: 20px;
-  content: "−";
+  transform: rotate(0deg);
 }
 
 body.inner-page.ai-consulting-page .ai-faq-list details p {
-  max-width: 680px;
-  margin: -2px 0 23px;
-  padding-right: 28px;
-  font-size: 14px;
+  margin: -4px 0 22px;
+  padding-right: 44px;
+  color: var(--inner-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* Backgrounds: keep the morph shape visible behind every section. */
+body.inner-page.ai-consulting-page .ai-examples {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.72) 200px);
+}
+
+body.inner-page.ai-consulting-page .ai-process,
+body.inner-page.ai-consulting-page .ai-faq {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+body.inner-page.ai-consulting-page .ai-services,
+body.inner-page.ai-consulting-page .ai-pricing {
+  background: rgba(245, 242, 255, 0.82);
 }
 
 body.inner-page.ai-consulting-page .service-cta-section {
   background: transparent;
-  border-radius: 0;
-}
-
-body.inner-page.ai-consulting-page .service-cta {
-  gap: clamp(32px, 6vw, 96px);
 }
 
 body.inner-page.ai-consulting-page .service-cta h2 {
-  max-width: 760px;
-}
-
-body.inner-page.ai-consulting-page .service-cta .ai-cta-note {
-  margin-top: 14px;
-  font-size: 13px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  letter-spacing: -0.02em;
+  line-height: 1.35;
 }
 
 body.inner-page.ai-consulting-page .service-cta-actions .button.primary {
   box-shadow: none;
 }
 
-body.inner-page.ai-consulting-page .ai-services,
-body.inner-page.ai-consulting-page .ai-routing,
-body.inner-page.ai-consulting-page .ai-process,
-body.inner-page.ai-consulting-page .ai-pricing,
-body.inner-page.ai-consulting-page .ai-faq {
-  background: rgba(255, 255, 255, 0.72);
-  border-radius: 0;
-}
-
-body.inner-page.ai-consulting-page .ai-examples,
-body.inner-page.ai-consulting-page .ai-deliverables,
-body.inner-page.ai-consulting-page .ai-information,
-body.inner-page.ai-consulting-page .ai-boundaries {
-  background: rgba(240, 236, 255, 0.78);
-  border-radius: 0;
-}
-
-body.inner-page.ai-consulting-page #ai-services,
 body.inner-page.ai-consulting-page #ai-examples,
-body.inner-page.ai-consulting-page #ai-deliverables,
+body.inner-page.ai-consulting-page #ai-services,
 body.inner-page.ai-consulting-page #ai-process,
 body.inner-page.ai-consulting-page #ai-pricing,
 body.inner-page.ai-consulting-page #ai-faq {
   scroll-margin-top: 96px;
 }
 
-@media (max-width: 920px) {
-  body.inner-page.ai-consulting-page .ai-service-range-item {
-    grid-template-columns: 48px minmax(0, 1fr);
-    gap: 20px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-service-range-detail {
-    grid-column: 2;
-    grid-template-columns: minmax(100px, 0.3fr) minmax(0, 1fr);
-    padding-top: 2px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-work-example-heading {
-    grid-template-columns: 110px minmax(0, 1fr);
-  }
-
-  body.inner-page.ai-consulting-page .ai-work-example-details {
+@media (max-width: 980px) {
+  body.inner-page.ai-consulting-page .ai-service-grid,
+  body.inner-page.ai-consulting-page .ai-scope-grid {
     grid-template-columns: 1fr;
-    gap: 0;
   }
 
-  body.inner-page.ai-consulting-page .ai-work-example-details > div,
-  body.inner-page.ai-consulting-page .ai-work-example-details > div:first-child {
-    padding: 18px 0;
-    border-top: 1px solid var(--inner-line);
-    border-left: 0;
+  body.inner-page.ai-consulting-page .ai-related {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  body.inner-page.ai-consulting-page .ai-work-example-details > div:first-child {
-    margin-top: 14px;
+  body.inner-page.ai-consulting-page .ai-related-title {
+    grid-column: 1 / -1;
   }
 
-  body.inner-page.ai-consulting-page .ai-routing-item {
-    min-height: 0;
-    padding-left: 0;
+  body.inner-page.ai-consulting-page .ai-flow {
+    grid-template-columns: 1fr;
+    padding-left: 6px;
   }
 
-  body.inner-page.ai-consulting-page .ai-routing-item + .ai-routing-item {
-    padding-left: 20px;
+  body.inner-page.ai-consulting-page .ai-flow li {
+    padding: 0 0 28px 32px;
+    border-top: 0;
+    border-left: 2px solid var(--inner-line);
   }
 
-  body.inner-page.ai-consulting-page .ai-two-column,
+  body.inner-page.ai-consulting-page .ai-flow li:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+
+  body.inner-page.ai-consulting-page .ai-flow li::before {
+    top: 2px;
+    left: -7px;
+  }
+
+  body.inner-page.ai-consulting-page .ai-flow h3 {
+    margin-top: 4px;
+  }
+
+  body.inner-page.ai-consulting-page .ai-flow p {
+    margin-top: 4px;
+  }
+
   body.inner-page.ai-consulting-page .ai-faq-grid {
     grid-template-columns: 1fr;
-    gap: 42px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-section-side h2 {
-    max-width: 720px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li > div {
-    margin-left: 48px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li > span {
-    padding-left: 48px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li::before {
-    left: 23px;
+    gap: 8px;
   }
 }
 
 @media (max-width: 640px) {
-  body.inner-page.ai-consulting-page .ai-hero {
-    padding-top: 66px;
-    padding-bottom: 54px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-hero h1 {
-    font-size: clamp(42px, 12vw, 64px);
-  }
-
-  body.inner-page.ai-consulting-page .ai-hero-desktop-title {
-    display: none;
-  }
-
-  body.inner-page.ai-consulting-page .ai-hero-mobile-title {
+  body.inner-page.ai-consulting-page .ai-sp-only {
     display: inline;
   }
 
-  body.inner-page.ai-consulting-page .ai-hero-tagline {
-    margin-top: 20px !important;
-    font-size: clamp(20px, 5.6vw, 29px) !important;
+  body.inner-page.ai-consulting-page .ai-hero {
+    padding-top: 64px;
+    padding-bottom: 56px;
   }
 
-  body.inner-page.ai-consulting-page .ai-hero-copy > p:not(.eyebrow):not(.ai-hero-tagline) {
-    margin-top: 20px;
+  body.inner-page.ai-consulting-page .ai-hero h1 {
+    font-size: clamp(28px, 8.4vw, 40px);
+  }
+
+  body.inner-page.ai-consulting-page .ai-hero .ai-hero-lead {
+    font-size: 22px;
+  }
+
+  body.inner-page.ai-consulting-page .ai-hero .ai-hero-lead + p {
     font-size: 15px;
   }
 
-  body.inner-page.ai-consulting-page .ai-hero-actions {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 17px;
-    margin-top: 28px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-service-range-item {
-    grid-template-columns: 1fr;
-    gap: 17px;
-    padding: 34px 0;
-  }
-
-  body.inner-page.ai-consulting-page .ai-service-range-detail {
-    grid-column: auto;
-    grid-template-columns: minmax(88px, 0.32fr) minmax(0, 1fr);
-    gap: 8px 14px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-service-range-main h3 {
-    font-size: 29px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-work-example-heading {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-work-example-heading h3 {
-    font-size: 25px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-work-example-details {
-    margin-top: 25px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-routing-layout {
-    grid-template-columns: 1fr;
-  }
-
-  body.inner-page.ai-consulting-page .ai-routing-center {
-    grid-column: auto;
-    justify-self: start;
-    width: 100%;
-    padding: 18px 0;
-    text-align: left;
-  }
-
-  body.inner-page.ai-consulting-page .ai-routing-item,
-  body.inner-page.ai-consulting-page .ai-routing-item + .ai-routing-item {
-    padding: 25px 0;
-    border-top: 1px solid var(--inner-line);
-    border-left: 0;
-  }
-
-  body.inner-page.ai-consulting-page .ai-routing-item:first-of-type {
-    border-top: 0;
-  }
-
-  body.inner-page.ai-consulting-page .ai-two-column,
-  body.inner-page.ai-consulting-page .ai-faq-grid {
-    gap: 32px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-section-side h2 {
-    font-size: 32px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-deliverables-list,
-  body.inner-page.ai-consulting-page .ai-plain-list,
-  body.inner-page.ai-consulting-page .ai-pricing-list {
-    grid-template-columns: 1fr;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li {
+  body.inner-page.ai-consulting-page .ai-example-grid,
+  body.inner-page.ai-consulting-page .ai-related {
     grid-template-columns: 1fr;
     gap: 14px;
-    padding: 29px 0;
   }
 
-  body.inner-page.ai-consulting-page .ai-process-list li > div {
-    margin-left: 24px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li > span {
-    padding-left: 24px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-list li::before {
-    left: 8px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-process-meta {
-    margin-top: 14px !important;
+  body.inner-page.ai-consulting-page .ai-service-grid,
+  body.inner-page.ai-consulting-page .ai-scope-grid {
+    gap: 14px;
   }
 
   body.inner-page.ai-consulting-page .ai-faq-list summary {
-    padding-top: 19px;
-    padding-bottom: 19px;
+    padding: 18px 36px 18px 0;
     font-size: 15px;
   }
 
-  body.inner-page.ai-consulting-page .ai-faq-toggle {
-    top: 18px;
-  }
-
-  body.inner-page.ai-consulting-page .service-cta-actions {
-    align-items: flex-start;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body.inner-page.ai-consulting-page .ai-hero::after {
-    transform: rotate(-18deg);
+  body.inner-page.ai-consulting-page .ai-faq-list details p {
+    padding-right: 0;
   }
 }
