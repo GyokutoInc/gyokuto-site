@@ -469,8 +469,15 @@ function initMorphingBackground() {
     return;
   }
 
+  let lastRenderedPath = "";
   const render = (points) => {
     const path = renderPath(pathTemplate, points);
+
+    if (path === lastRenderedPath) {
+      return;
+    }
+
+    lastRenderedPath = path;
     morphPath.setAttribute("d", path);
     morphShadowPath.setAttribute("d", path);
   };
@@ -543,7 +550,16 @@ function initMorphingBackground() {
     }
   };
 
+  // ゆっくり変形する背景なので30fpsで十分。毎フレームの再描画を半分に抑える
+  const frameInterval = 30;
+
   const tick = (now) => {
+    animationFrame = requestAnimationFrame(tick);
+
+    if (now - lastFrameAt < frameInterval) {
+      return;
+    }
+
     const deltaTime = Math.min(Math.max(now - lastFrameAt, 0), 80);
     lastFrameAt = now;
     targetMorphState = getScrollMorphState(window.scrollY || window.pageYOffset || 0);
@@ -558,7 +574,6 @@ function initMorphingBackground() {
     currentPoints = pointsForMorphState(displayMorphState, now);
 
     render(currentPoints);
-    animationFrame = requestAnimationFrame(tick);
   };
 
   refreshMorphAnchors();
