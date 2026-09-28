@@ -7159,142 +7159,176 @@ body.inner-page.ai-consulting-page .ai-flow p {
 
 /* Pricing & scope */
 body.inner-page.ai-consulting-page .ai-forms {
-  padding: clamp(32px, 5vw, 64px);
-  border-radius: 28px;
-  color: #fff;
-  background:
-    radial-gradient(120% 90% at 100% 0%, rgba(139, 92, 246, 0.45) 0%, rgba(139, 92, 246, 0) 55%),
-    var(--navy);
-}
-
-body.inner-page.ai-consulting-page .ai-forms-intro {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 24px;
-  margin-bottom: clamp(28px, 4vw, 44px);
-}
-
-body.inner-page.ai-consulting-page .ai-forms-intro p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 14px;
-}
-
-body.inner-page.ai-consulting-page .ai-forms-intro .ai-forms-label {
-  color: #fff;
-  font-size: clamp(20px, 2vw, 24px);
-  font-weight: 700;
-}
-
-body.inner-page.ai-consulting-page .ai-form-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 body.inner-page.ai-consulting-page .ai-form {
-  display: flex;
-  flex-direction: column;
-  padding: 0 clamp(20px, 3vw, 40px);
+  flex: 1 1 0;
+  min-width: 0;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--inner-line);
+  border-radius: 20px;
+  background: var(--ai-card);
+  cursor: pointer;
+  transition: flex-grow 550ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
 }
 
-body.inner-page.ai-consulting-page .ai-form:first-child {
-  padding-left: 0;
+body.inner-page.ai-consulting-page .ai-form.is-open {
+  flex-grow: 2.1;
+  border-color: rgba(139, 92, 246, 0.45);
+  box-shadow: 0 18px 40px rgba(109, 40, 217, 0.08);
+  cursor: default;
 }
 
-body.inner-page.ai-consulting-page .ai-form:last-child {
-  padding-right: 0;
-}
-
-body.inner-page.ai-consulting-page .ai-form + .ai-form {
-  border-left: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-body.inner-page.ai-consulting-page .ai-form-num {
-  color: var(--lavender);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+body.inner-page.ai-consulting-page .ai-form:focus-visible {
+  outline: 2px solid var(--ai-accent);
+  outline-offset: 3px;
 }
 
 body.inner-page.ai-consulting-page .ai-form h3 {
-  margin: 10px 0 0;
-  color: #fff;
-  font-size: clamp(22px, 2.3vw, 28px);
-  line-height: 1.35;
+  margin: 0;
+  color: var(--inner-ink);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.4;
 }
 
 body.inner-page.ai-consulting-page .ai-form-tagline {
-  margin: 8px 0 0;
-  color: rgba(255, 255, 255, 0.78);
+  margin: 6px 0 0;
+  color: var(--ai-accent-dark);
   font-size: 14px;
+  font-weight: 500;
   line-height: 1.7;
 }
 
-body.inner-page.ai-consulting-page .ai-form-chart {
-  margin: 22px 0 6px;
-}
-
-body.inner-page.ai-consulting-page .ai-form-chart svg {
+body.inner-page.ai-consulting-page .ai-dg {
   display: block;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: auto;
+  margin-top: 18px;
   overflow: visible;
 }
 
-body.inner-page.ai-consulting-page .ai-form-chart .ax {
-  stroke: rgba(255, 255, 255, 0.22);
+body.inner-page.ai-consulting-page .ai-dg .ax {
+  stroke: var(--inner-line);
   stroke-width: 1.5;
 }
 
-body.inner-page.ai-consulting-page .ai-form-chart .bar {
-  fill: rgba(196, 181, 253, 0.35);
-}
-
-body.inner-page.ai-consulting-page .ai-form-chart .pt {
-  fill: var(--lavender);
-}
-
-body.inner-page.ai-consulting-page .ai-form-chart .dash {
-  stroke: var(--lavender);
-  stroke-width: 2;
-  stroke-dasharray: 4 6;
+body.inner-page.ai-consulting-page .ai-dg .ln {
+  fill: none;
+  stroke: var(--ai-accent);
   stroke-linecap: round;
+  stroke-dasharray: 1;
 }
 
-body.inner-page.ai-consulting-page .ai-form-chart text {
-  fill: rgba(255, 255, 255, 0.7);
+body.inner-page.ai-consulting-page .ai-dg .bar {
+  stroke: rgba(139, 92, 246, 0.32);
+  stroke-width: 14;
+}
+
+body.inner-page.ai-consulting-page .ai-dg .thin {
+  stroke-width: 2;
+}
+
+body.inner-page.ai-consulting-page .ai-dg .dash {
+  stroke-width: 2;
+  stroke-dasharray: 0.02 0.03;
+}
+
+body.inner-page.ai-consulting-page .ai-dg .dot {
+  fill: var(--ai-accent);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+body.inner-page.ai-consulting-page .ai-dg text {
+  fill: var(--inner-muted);
   font-size: 12px;
   font-weight: 500;
 }
 
+body.inner-page.ai-consulting-page .ai-dg.play .ln:not(.dash) {
+  animation: ai-dg-draw 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+body.inner-page.ai-consulting-page .ai-dg.play .dash,
+body.inner-page.ai-consulting-page .ai-dg.play text {
+  animation: ai-dg-fade 500ms ease 300ms both;
+}
+
+body.inner-page.ai-consulting-page .ai-dg.play .dot {
+  animation: ai-dg-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(var(--i, 0) * 140ms + 150ms);
+}
+
+@keyframes ai-dg-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes ai-dg-pop {
+  from {
+    transform: scale(0);
+  }
+}
+
+@keyframes ai-dg-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+body.inner-page.ai-consulting-page .ai-form-more {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 550ms cubic-bezier(0.22, 1, 0.36, 1), opacity 350ms ease;
+}
+
+body.inner-page.ai-consulting-page .ai-form-more > * {
+  overflow: hidden;
+}
+
+body.inner-page.ai-consulting-page .ai-form.is-open .ai-form-more {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition-delay: 0s, 150ms;
+}
+
 body.inner-page.ai-consulting-page .ai-form-spec {
-  margin: auto 0 0;
-  padding-top: 16px;
+  margin: 18px 0 0;
 }
 
 body.inner-page.ai-consulting-page .ai-form-spec div {
   padding: 12px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid var(--inner-line);
 }
 
 body.inner-page.ai-consulting-page .ai-form-spec dt {
-  color: var(--lavender);
+  color: var(--inner-muted);
   font-size: 12px;
   font-weight: 700;
 }
 
 body.inner-page.ai-consulting-page .ai-form-spec dd {
   margin: 4px 0 0;
-  color: #fff;
+  color: var(--inner-ink);
   font-size: 14px;
   line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.inner-page.ai-consulting-page .ai-dg.play * {
+    animation: none;
+  }
+
+  body.inner-page.ai-consulting-page .ai-form,
+  body.inner-page.ai-consulting-page .ai-form-more {
+    transition: none;
+  }
 }
 
 body.inner-page.ai-consulting-page .ai-pricing-detail {
@@ -7486,27 +7520,20 @@ body.inner-page.ai-consulting-page #ai-faq {
     grid-template-columns: 1fr;
   }
 
-  body.inner-page.ai-consulting-page .ai-form-grid {
-    grid-template-columns: 1fr;
+  body.inner-page.ai-consulting-page .ai-forms {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   body.inner-page.ai-consulting-page .ai-form,
-  body.inner-page.ai-consulting-page .ai-form:first-child,
-  body.inner-page.ai-consulting-page .ai-form:last-child {
-    padding: 28px 0;
+  body.inner-page.ai-consulting-page .ai-form.is-open {
+    flex: none;
+    cursor: default;
   }
 
-  body.inner-page.ai-consulting-page .ai-form:first-child {
-    padding-top: 0;
-  }
-
-  body.inner-page.ai-consulting-page .ai-form:last-child {
-    padding-bottom: 0;
-  }
-
-  body.inner-page.ai-consulting-page .ai-form + .ai-form {
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-    border-left: 0;
+  body.inner-page.ai-consulting-page .ai-form .ai-form-more {
+    grid-template-rows: 1fr;
+    opacity: 1;
   }
 
   body.inner-page.ai-consulting-page .ai-flow {
@@ -7592,12 +7619,6 @@ body.inner-page.ai-consulting-page #ai-faq {
 
   body.inner-page.ai-consulting-page .ai-service-grid {
     gap: 14px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-forms {
-    margin: 0 -8px;
-    padding: 28px 22px;
-    border-radius: 22px;
   }
 
   body.inner-page.ai-consulting-page .ai-pricing-detail {
