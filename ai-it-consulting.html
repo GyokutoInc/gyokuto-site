@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260928-8">
+  <link rel="stylesheet" href="styles.css?v=20260928-11">
 </head>
 <body class="inner-page service-detail-page ai-consulting-page">
   <div class="home-morph-background" data-morph-background aria-hidden="true">
@@ -76,31 +76,102 @@
     <section id="ai-examples" class="section ai-examples" data-morph-state="1">
       <div class="container">
         <div class="section-heading ai-heading">
-          <p class="eyebrow">EXAMPLES</p>
-          <h2>ご相談いただける業務の例</h2>
+          <p class="eyebrow">USE CASES</p>
+          <h2>AIで効率化できる業務</h2>
+          <p>部署ごとの代表的な例です。ここにない業務も、まずはご相談ください。</p>
         </div>
-        <ul class="ai-example-grid">
-          <li class="ai-example">
-            <h3>提案書の下書き</h3>
-            <p>商談メモや過去の提案書から、顧客の課題と要望を整理し、下書きを作成します。</p>
-            <p class="ai-example-check">金額・納期・契約条件は担当者が確認</p>
-          </li>
-          <li class="ai-example">
-            <h3>社内資料の検索</h3>
-            <p>マニュアルや規程から関係する箇所を探し、回答候補と参照元を表示します。</p>
-            <p class="ai-example-check">閲覧権限と回答の確定者を事前に決定</p>
-          </li>
-          <li class="ai-example">
-            <h3>議事録の作成</h3>
-            <p>文字起こしから、決定事項・担当者・期限を分けて議事録の下書きにまとめます。</p>
-            <p class="ai-example-check">決定事項・日付・金額は出席者が確認</p>
-          </li>
-          <li class="ai-example">
-            <h3>帳票の一覧化</h3>
-            <p>PDFや申込書から指定の項目を抜き出し、ExcelやCSVに整理します。</p>
-            <p class="ai-example-check">読み取れなかった箇所は一覧で返却</p>
-          </li>
-        </ul>
+        <div class="ai-uc" data-ai-tabs>
+          <div class="ai-uc-tabs" role="tablist" aria-label="部署を選ぶ">
+            <button class="ai-uc-tab" type="button" role="tab" id="ai-uc-tab-sales" aria-controls="ai-uc-sales" aria-selected="true"><span class="ai-uc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></span>営業・マーケティング</button>
+            <button class="ai-uc-tab" type="button" role="tab" id="ai-uc-tab-support" aria-controls="ai-uc-support" aria-selected="false" tabindex="-1"><span class="ai-uc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg></span>カスタマーサポート</button>
+            <button class="ai-uc-tab" type="button" role="tab" id="ai-uc-tab-backoffice" aria-controls="ai-uc-backoffice" aria-selected="false" tabindex="-1"><span class="ai-uc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>経理・人事・総務</button>
+            <button class="ai-uc-tab" type="button" role="tab" id="ai-uc-tab-planning" aria-controls="ai-uc-planning" aria-selected="false" tabindex="-1"><span class="ai-uc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>企画・経営</button>
+            <button class="ai-uc-tab" type="button" role="tab" id="ai-uc-tab-dev" aria-controls="ai-uc-dev" aria-selected="false" tabindex="-1"><span class="ai-uc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span>開発・IT</button>
+            <button class="ai-uc-tab" type="button" role="tab" id="ai-uc-tab-company" aria-controls="ai-uc-company" aria-selected="false" tabindex="-1"><span class="ai-uc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M6 20a6 6 0 0 1 12 0"/><circle cx="5" cy="10" r="2"/><circle cx="19" cy="10" r="2"/></svg></span>全社共通</button>
+          </div>
+          <div class="ai-uc-panel" id="ai-uc-sales" role="tabpanel" aria-labelledby="ai-uc-tab-sales">
+            <div class="ai-uc-panel-head">
+              <span class="ai-uc-panel-num" aria-hidden="true">01</span>
+              <h3>営業・マーケティング</h3>
+              <p>商談の準備から記録、集客のための原稿づくりまで。</p>
+            </div>
+            <ul class="ai-uc-list">
+                <li><span class="ai-uc-no">01-1</span><h4>提案書・営業資料の下書き</h4><p>商談メモや過去資料から、顧客に合わせた構成と文章案を作成</p></li>
+                <li><span class="ai-uc-no">01-2</span><h4>商談記録の要約とCRM入力</h4><p>録音やメモを要約し、顧客管理システムへの入力を補助</p></li>
+                <li><span class="ai-uc-no">01-3</span><h4>広告・SNS・記事の原稿作成</h4><p>ブランドの表現ルールに沿って、複数の案をまとめて作成</p></li>
+                <li><span class="ai-uc-no">01-4</span><h4>顧客データの分析</h4><p>購買履歴や問い合わせから、見込みの高い顧客や傾向を抽出</p></li>
+            </ul>
+          </div>
+          <div class="ai-uc-panel" id="ai-uc-support" role="tabpanel" aria-labelledby="ai-uc-tab-support">
+            <div class="ai-uc-panel-head">
+              <span class="ai-uc-panel-num" aria-hidden="true">02</span>
+              <h3>カスタマーサポート</h3>
+              <p>問い合わせの一次対応と、担当者の回答作成を支えます。</p>
+            </div>
+            <ul class="ai-uc-list">
+                <li><span class="ai-uc-no">02-1</span><h4>問い合わせ対応チャットボット</h4><p>FAQや規約をもとに、よくある質問へ24時間回答</p></li>
+                <li><span class="ai-uc-no">02-2</span><h4>問い合わせの分類・振り分け</h4><p>メールやフォームの内容を読み取り、担当部署ごとに仕分け</p></li>
+                <li><span class="ai-uc-no">02-3</span><h4>回答文の下書き</h4><p>過去の対応履歴を参照し、担当者が確認する回答案を作成</p></li>
+                <li><span class="ai-uc-no">02-4</span><h4>応対記録の要約と分析</h4><p>通話やチャットの記録を要約し、多い要望や不満を集計</p></li>
+            </ul>
+          </div>
+          <div class="ai-uc-panel" id="ai-uc-backoffice" role="tabpanel" aria-labelledby="ai-uc-tab-backoffice">
+            <div class="ai-uc-panel-head">
+              <span class="ai-uc-panel-num" aria-hidden="true">03</span>
+              <h3>経理・人事・総務</h3>
+              <p>書類の読み取りやチェックなど、件数の多い事務作業に。</p>
+            </div>
+            <ul class="ai-uc-list">
+                <li><span class="ai-uc-no">03-1</span><h4>請求書・帳票の読み取り</h4><p>PDFや紙の書類から必要な項目を抜き出し、Excelや会計ソフトへ</p></li>
+                <li><span class="ai-uc-no">03-2</span><h4>経費・申請内容のチェック</h4><p>社内規程と照らし合わせ、不備や確認が必要な箇所を指摘</p></li>
+                <li><span class="ai-uc-no">03-3</span><h4>求人票・研修資料の作成</h4><p>職種や社内ルールに合わせて、文章と資料の下書きを作成</p></li>
+                <li><span class="ai-uc-no">03-4</span><h4>社内規程の問い合わせ対応</h4><p>就業規則や手続きに関する社員からの質問に回答</p></li>
+            </ul>
+          </div>
+          <div class="ai-uc-panel" id="ai-uc-planning" role="tabpanel" aria-labelledby="ai-uc-tab-planning">
+            <div class="ai-uc-panel-head">
+              <span class="ai-uc-panel-num" aria-hidden="true">04</span>
+              <h3>企画・経営</h3>
+              <p>情報収集と分析の時間を減らし、判断に集中できるように。</p>
+            </div>
+            <ul class="ai-uc-list">
+                <li><span class="ai-uc-no">04-1</span><h4>市場・競合の調査</h4><p>公開情報を集めて要約し、比較しやすい形に整理</p></li>
+                <li><span class="ai-uc-no">04-2</span><h4>売上・需要の予測</h4><p>過去の実績データから、売上や在庫の必要量を予測</p></li>
+                <li><span class="ai-uc-no">04-3</span><h4>レポート・会議資料の作成</h4><p>数値データと議事録から、報告書や資料の下書きを作成</p></li>
+                <li><span class="ai-uc-no">04-4</span><h4>アンケート・口コミの分析</h4><p>自由記述の回答を分類し、傾向と改善点をまとめる</p></li>
+            </ul>
+          </div>
+          <div class="ai-uc-panel" id="ai-uc-dev" role="tabpanel" aria-labelledby="ai-uc-tab-dev">
+            <div class="ai-uc-panel-head">
+              <span class="ai-uc-panel-num" aria-hidden="true">05</span>
+              <h3>開発・IT</h3>
+              <p>開発の生産性向上から、社内システムへのAI組み込みまで。</p>
+            </div>
+            <ul class="ai-uc-list">
+                <li><span class="ai-uc-no">05-1</span><h4>コード生成・レビューの支援</h4><p>開発チームに合ったAIツールの選定と、使い方のルールづくり</p></li>
+                <li><span class="ai-uc-no">05-2</span><h4>テスト・技術文書の作成</h4><p>既存のコードから、テストケースや仕様書の下書きを作成</p></li>
+                <li><span class="ai-uc-no">05-3</span><h4>既存システムとのAI連携</h4><p>社内システムや業務ツールに、API経由でAIの機能を組み込み</p></li>
+                <li><span class="ai-uc-no">05-4</span><h4>AIエージェントによる自動化</h4><p>複数の手順にまたがる定型処理を、AIが順に実行する仕組みを構築</p></li>
+            </ul>
+          </div>
+          <div class="ai-uc-panel" id="ai-uc-company" role="tabpanel" aria-labelledby="ai-uc-tab-company">
+            <div class="ai-uc-panel-head">
+              <span class="ai-uc-panel-num" aria-hidden="true">06</span>
+              <h3>全社共通</h3>
+              <p>部署を問わず使える基盤と、安全に使うためのルールづくり。</p>
+            </div>
+            <ul class="ai-uc-list">
+                <li><span class="ai-uc-no">06-1</span><h4>社内ナレッジ検索</h4><p>マニュアルや過去資料を横断して検索し、参照元つきで回答</p></li>
+                <li><span class="ai-uc-no">06-2</span><h4>議事録の作成</h4><p>会議の音声から文字起こしし、決定事項とタスクを整理</p></li>
+                <li><span class="ai-uc-no">06-3</span><h4>翻訳・文章の校正</h4><p>社内外の文書を翻訳し、表記ゆれや誤字を確認</p></li>
+                <li><span class="ai-uc-no">06-4</span><h4>AI利用ガイドラインと研修</h4><p>入力してよい情報や確認手順を定め、社員向けの研修を実施</p></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ai-tech">
+          <p class="ai-tech-label">扱う技術</p>
+          <ul class="ai-tech-list"><li>生成AI（LLM）</li><li>文書検索（RAG）</li><li>AIエージェント</li><li>文字認識（OCR）</li><li>音声認識・文字起こし</li><li>画像認識</li><li>需要予測・機械学習</li><li>API連携</li></ul>
+        </div>
         <p class="ai-small">※ 実績ではなく、ご相談いただける業務の例です。対応可否は資料の状態や必要な精度を確認して判断します。</p>
       </div>
     </section>
@@ -147,11 +218,6 @@
             </ul>
           </li>
         </ol>
-        <div class="ai-related">
-          <p class="ai-related-title">AI以外の方法が適した業務は、他の事業と組み合わせてご提案します。</p>
-          <a class="ai-related-link" href="bpo.html"><span>BPO事業</span><small>手順に沿った入力・確認作業</small></a>
-          <a class="ai-related-link" href="web-services.html"><span>業務改善・システム開発事業</span><small>データ連携や専用画面の開発</small></a>
-        </div>
       </div>
     </section>
 
@@ -177,29 +243,48 @@
         <div class="section-heading ai-heading">
           <p class="eyebrow">PRICING &amp; SCOPE</p>
           <h2>料金と対応範囲</h2>
+          <p>一律の料金表は設けていません。ご依頼の形と対象範囲に合わせてお見積りします。</p>
         </div>
-        <div class="ai-scope-grid">
-          <div class="ai-scope">
-            <h3>料金</h3>
-            <p>対象業務の数、資料の量と形式、試作やシステム連携の有無などを確認し、個別にお見積りします。外部AIサービスやクラウドの利用料金は別途となります。</p>
-          </div>
-          <div class="ai-scope">
-            <h3>ご契約前に決めること</h3>
-            <ul>
-              <li>契約範囲に含む成果物</li>
-              <li>AIに入力してよい情報</li>
-              <li>出力を最終確認する担当者</li>
-            </ul>
-          </div>
-          <div class="ai-scope">
-            <h3>お引き受けしない範囲</h3>
-            <ul>
-              <li>AI出力の正確性の保証</li>
-              <li>法務・税務・医療などの専門判断の代行</li>
-              <li>人の確認を経ずに顧客へ送る運用</li>
-            </ul>
-          </div>
+
+        <div class="ai-forms" data-ai-forms>
+          <article class="ai-form is-open" tabindex="0" aria-expanded="true">
+            <h3>プロジェクト型</h3>
+            <p class="ai-form-tagline">AIで何ができるかを、1つの業務で確かめる</p>
+            <svg class="ai-dg" viewBox="0 0 300 64" aria-hidden="true"><line class="ax" x1="10" y1="46" x2="290" y2="46"/><line class="ln bar" pathLength="1" x1="44" y1="46" x2="214" y2="46"/><circle class="dot" style="--i:0" cx="44" cy="46" r="6"/><circle class="dot" style="--i:3" cx="214" cy="46" r="6"/><text x="44" y="22" text-anchor="middle">開始</text><text x="214" y="22" text-anchor="middle">効果を確認</text></svg>
+            <div class="ai-form-more">
+              <dl class="ai-form-spec">
+                <div><dt>手元に残るもの</dt><dd>調査結果、試作品、導入するかの判断材料</dd></div>
+                <div><dt>進め方</dt><dd>現状を調べて試作し、効果を確かめたところで完了</dd></div>
+                <div><dt>料金</dt><dd>成果物ごとに一括でお見積り</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="ai-form" tabindex="0" aria-expanded="false">
+            <h3>継続支援型</h3>
+            <p class="ai-form-tagline">相談しながら、業務を順に改善する</p>
+            <svg class="ai-dg" viewBox="0 0 300 64" aria-hidden="true"><line class="ax" x1="10" y1="46" x2="290" y2="46"/><line class="ln thin" pathLength="1" x1="44" y1="46" x2="286" y2="46"/><circle class="dot" style="--i:0" cx="44" cy="46" r="6"/><circle class="dot" style="--i:1" cx="98" cy="46" r="6"/><circle class="dot" style="--i:2" cx="152" cy="46" r="6"/><circle class="dot" style="--i:3" cx="206" cy="46" r="6"/><circle class="dot" style="--i:4" cx="260" cy="46" r="6"/><text x="44" y="22" text-anchor="middle">1か月</text><text x="98" y="22" text-anchor="middle">2か月</text><text x="152" y="22" text-anchor="middle">3か月</text><text x="206" y="22" text-anchor="middle">4か月</text><text x="260" y="22" text-anchor="middle">…</text></svg>
+            <div class="ai-form-more">
+              <dl class="ai-form-spec">
+                <div><dt>手元に残るもの</dt><dd>順に改善された業務と、いつでも相談できる体制</dd></div>
+                <div><dt>進め方</dt><dd>定例の打ち合わせで優先順位を決め、月ごとに進める</dd></div>
+                <div><dt>料金</dt><dd>支援の範囲に応じて月ごとにお見積り</dd></div>
+              </dl>
+            </div>
+          </article>
+          <article class="ai-form" tabindex="0" aria-expanded="false">
+            <h3>開発・導入型</h3>
+            <p class="ai-form-tagline">毎日の業務で使うツールを作り、運用する</p>
+            <svg class="ai-dg" viewBox="0 0 300 64" aria-hidden="true"><line class="ax" x1="10" y1="46" x2="290" y2="46"/><line class="ln bar" pathLength="1" x1="44" y1="46" x2="150" y2="46"/><line class="ln dash" pathLength="1" x1="150" y1="46" x2="286" y2="46"/><circle class="dot" style="--i:2" cx="150" cy="46" r="6"/><text x="97" y="22" text-anchor="middle">開発</text><text x="222" y="22" text-anchor="middle">運用・保守</text></svg>
+            <div class="ai-form-more">
+              <dl class="ai-form-spec">
+                <div><dt>手元に残るもの</dt><dd>実際の業務で動くツールや、社内システムとの連携</dd></div>
+                <div><dt>進め方</dt><dd>作るものを決めて開発し、導入後の保守まで対応</dd></div>
+                <div><dt>料金</dt><dd>開発費と、必要に応じた保守費</dd></div>
+              </dl>
+            </div>
+          </article>
         </div>
+        <p class="ai-small">まず効果を確かめたい場合はプロジェクト型、作るものが決まっている場合は開発・導入型が向いています。どの形が合うかは、ご相談の際に一緒に決められます。</p>
       </div>
     </section>
 
@@ -242,6 +327,6 @@
     </div>
     <p class="copyright home-copyright">&copy; 2026 Gyokuto株式会社</p>
   </footer>
-  <script src="script.js?v=20260928-1"></script>
+  <script src="script.js?v=20260928-3"></script>
 </body>
 </html>

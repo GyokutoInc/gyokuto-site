@@ -675,9 +675,94 @@ function initScrollReveal() {
   uniqueTargets.forEach((item) => observer.observe(item));
 }
 
+function initUseCaseTabs() {
+  document.querySelectorAll("[data-ai-tabs]").forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+
+    const select = (index, focus) => {
+      tabs.forEach((tab, i) => {
+        const active = i === index;
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (panels[i]) {
+          panels[i].hidden = !active;
+        }
+      });
+      if (focus) {
+        tabs[index].focus();
+      }
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => select(index, false));
+      tab.addEventListener("keydown", (event) => {
+        const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+        if (event.key in keys) {
+          event.preventDefault();
+          select((index + keys[event.key] + tabs.length) % tabs.length, true);
+        }
+      });
+    });
+
+    root.classList.add("is-tabbed");
+    select(0, false);
+  });
+}
+
+function initPricingForms() {
+  const replay = (svg) => {
+    if (!svg) {
+      return;
+    }
+    svg.classList.remove("play");
+    void svg.getBoundingClientRect();
+    svg.classList.add("play");
+  };
+
+  document.querySelectorAll("[data-ai-forms]").forEach((root) => {
+    const cards = Array.from(root.querySelectorAll(".ai-form"));
+    const hoverWide = window.matchMedia("(hover: hover) and (min-width: 981px)");
+
+    const open = (card) => {
+      if (card.classList.contains("is-open")) {
+        return;
+      }
+      cards.forEach((item) => {
+        const active = item === card;
+        item.classList.toggle("is-open", active);
+        item.setAttribute("aria-expanded", String(active));
+      });
+      replay(card.querySelector(".ai-dg"));
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        if (hoverWide.matches) {
+          open(card);
+        }
+      });
+      card.addEventListener("click", () => open(card));
+      card.addEventListener("focus", () => open(card));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          replay(entry.target.querySelector(".ai-dg"));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    cards.forEach((card) => observer.observe(card));
+  });
+}
+
 initCursorFollower();
 initScrollCue();
 initHeaderState();
 initPinkCubeMotion();
 initMorphingBackground();
 initScrollReveal();
+initUseCaseTabs();
+initPricingForms();
