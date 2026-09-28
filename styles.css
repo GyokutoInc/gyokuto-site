@@ -8042,3 +8042,195 @@ body.inner-page.ai-consulting-page #ai-faq {
     padding-right: 0;
   }
 }
+
+/* --------------------------------------------------------------------------
+   System development page — BPO page layout with its own sections
+   -------------------------------------------------------------------------- */
+
+body.inner-page.sys-page .sys-builds,
+body.inner-page.sys-page .sys-cases,
+body.inner-page.sys-page .sys-tech {
+  background: rgba(245, 242, 255, 0.82);
+}
+
+body.inner-page.sys-page .sys-pricing {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+body.inner-page.sys-page #sys-worries,
+body.inner-page.sys-page #sys-build,
+body.inner-page.sys-page #system-process,
+body.inner-page.sys-page #sys-cases,
+body.inner-page.sys-page #sys-pricing,
+body.inner-page.sys-page #sys-tech,
+body.inner-page.sys-page #sys-faq {
+  scroll-margin-top: 96px;
+}
+
+body.inner-page.sys-page .sys-build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+body.inner-page.sys-page .sys-build {
+  padding: 28px 26px;
+  border: 1px solid var(--inner-line);
+  border-radius: var(--bpo-radius);
+  background: #fff;
+  transition: border-color 240ms ease, transform 360ms ease;
+}
+
+body.inner-page.sys-page .sys-build:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  transform: translateY(-2px);
+}
+
+body.inner-page.sys-page .sys-build h3 {
+  margin: 18px 0 0;
+  color: var(--inner-ink);
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+body.inner-page.sys-page .sys-build p {
+  margin: 8px 0 0;
+  color: var(--inner-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+body.inner-page.sys-page .sys-build-note {
+  margin: 20px 0 0;
+  color: var(--inner-muted);
+  font-size: 13px;
+}
+
+body.inner-page.sys-page .sys-flow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.inner-page.sys-page .sys-flow .sys-flow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.inner-page.sys-page .sys-flow .sys-flow-steps li {
+  padding: 4px 12px;
+  border: 1px solid rgba(109, 40, 217, 0.22);
+  border-top: 1px solid rgba(109, 40, 217, 0.22);
+  border-radius: 999px;
+  color: var(--bpo-accent-dark);
+  background: rgba(245, 243, 255, 0.8);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+body.inner-page.sys-page .sys-flow .sys-flow-steps li::before {
+  content: none;
+}
+
+body.inner-page.sys-page .sys-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+body.inner-page.sys-page .sys-case {
+  padding: clamp(28px, 3vw, 40px);
+  border-radius: var(--bpo-radius);
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(20, 38, 52, 0.06);
+}
+
+body.inner-page.sys-page .sys-case-index {
+  margin: 0;
+  color: var(--bpo-accent-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+body.inner-page.sys-page .sys-case h3 {
+  margin: 10px 0 0;
+  color: var(--inner-ink);
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+body.inner-page.sys-page .sys-case dl,
+body.inner-page.sys-page .sys-tech-list {
+  margin: 20px 0 0;
+  border-top: 1px solid var(--inner-line);
+}
+
+body.inner-page.sys-page .sys-case dl div,
+body.inner-page.sys-page .sys-tech-list div {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--inner-line);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+body.inner-page.sys-page .sys-case dt,
+body.inner-page.sys-page .sys-tech-list dt {
+  color: var(--bpo-accent-dark);
+  font-weight: 700;
+}
+
+body.inner-page.sys-page .sys-case dd,
+body.inner-page.sys-page .sys-tech-list dd {
+  margin: 0;
+  color: var(--inner-ink);
+}
+
+body.inner-page.sys-page .sys-tech-list {
+  margin-top: 0;
+}
+
+body.inner-page.sys-page .sys-tech-list div {
+  grid-template-columns: 140px minmax(0, 1fr);
+  padding: 18px 0;
+}
+
+@media (max-width: 980px) {
+  body.inner-page.sys-page .sys-build-grid,
+  body.inner-page.sys-page .sys-case-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.inner-page.sys-page .sys-flow {
+    grid-template-columns: 1fr;
+  }
+
+  body.inner-page.sys-page .sys-flow .sys-flow-steps li {
+    padding: 4px 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  body.inner-page.sys-page .sys-build-grid,
+  body.inner-page.sys-page .sys-case-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.inner-page.sys-page .sys-build {
+    padding: 22px 20px;
+  }
+
+  body.inner-page.sys-page .bpo-hero h1 {
+    font-size: clamp(28px, 8vw, 34px);
+  }
+
+  body.inner-page.sys-page .sys-tech-list div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
