@@ -766,3 +766,66 @@ initMorphingBackground();
 initScrollReveal();
 initUseCaseTabs();
 initPricingForms();
+
+// System development page motion
+if (document.body.classList.contains("sd-page")) {
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".sd-rv, .sd-hero, .sd-tl, .sd-tech, .sd-reveal").forEach((el) => reduce ? el.classList.add("is-in") : io.observe(el));
+
+  // device parallax (scroll + pointer)
+  const devs = [...document.querySelectorAll(".sd-dev")];
+  let mx = 0, my = 0;
+  addEventListener("pointermove", (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
+  const hs = document.querySelector(".sd-hs");
+  const track = document.querySelector(".sd-hs-track");
+  const count = document.querySelector(".sd-hs-count b");
+  const hsBar = document.querySelector(".sd-hs-bar");
+  const tlWrap = document.querySelector(".sd-timeline");
+  const line = document.querySelector(".sd-line");
+  const wide = matchMedia("(min-width: 981px)");
+  const tick = () => {
+    const y = scrollY;
+    if (!reduce) devs.forEach((d) => {
+      const depth = Number(d.dataset.depth || 1);
+      d.style.transform = `translate3d(${mx * 24 * depth}px, ${my * 18 * depth - y * 0.12 * depth}px, 0)`;
+    });
+    if (hs && wide.matches) {
+      const r = hs.getBoundingClientRect();
+      const total = hs.offsetHeight - innerHeight;
+      const p = Math.min(Math.max(-r.top / total, 0), 1);
+      const max = track.scrollWidth - innerWidth + 48;
+      track.style.transform = `translate3d(${-p * max}px, 0, 0)`;
+      hsBar.style.setProperty("--p", p.toFixed(3));
+      count.textContent = String(Math.min(8, Math.floor(p * 7.999) + 1)).padStart(2, "0");
+    }
+    if (tlWrap) {
+      const r = tlWrap.getBoundingClientRect();
+      const p = Math.min(Math.max((innerHeight * 0.6 - r.top) / r.height, 0), 1);
+      line.style.setProperty("--p", p.toFixed(3));
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  // magnetic buttons
+  document.querySelectorAll(".sd-btn").forEach((b) => {
+    b.addEventListener("pointermove", (e) => {
+      const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.18}px, ${(e.clientY - r.top - r.height / 2) * 0.28}px)`;
+    });
+    b.addEventListener("pointerleave", () => { b.style.transform = ""; });
+  });
+
+  // blocks hop in sequence when CTA appears
+  const blocks = document.querySelector(".sd-blocks-svg");
+  if (blocks && !reduce) {
+    const anims = [...blocks.querySelectorAll("animate")];
+    const bio = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) { anims.forEach((a, i) => setTimeout(() => a.beginElement(), i * 140)); }
+    }), { threshold: 0.5 });
+    bio.observe(blocks);
+  }
+})();
+}
