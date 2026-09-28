@@ -771,61 +771,113 @@ initPricingForms();
 if (document.body.classList.contains("sd-page")) {
 (() => {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
-  document.querySelectorAll(".sd-rv, .sd-hero, .sd-tl, .sd-tech, .sd-reveal").forEach((el) => reduce ? el.classList.add("is-in") : io.observe(el));
-
-  // device parallax (scroll + pointer)
-  const devs = [...document.querySelectorAll(".sd-dev")];
-  let mx = 0, my = 0;
-  addEventListener("pointermove", (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; });
-  const hs = document.querySelector(".sd-hs");
-  const track = document.querySelector(".sd-hs-track");
-  const count = document.querySelector(".sd-hs-count b");
-  const hsBar = document.querySelector(".sd-hs-bar");
-  const tlWrap = document.querySelector(".sd-timeline");
-  const line = document.querySelector(".sd-line");
-  const wide = matchMedia("(min-width: 981px)");
-  const tick = () => {
-    const y = scrollY;
-    if (!reduce) devs.forEach((d) => {
-      const depth = Number(d.dataset.depth || 1);
-      d.style.transform = `translate3d(${mx * 24 * depth}px, ${my * 18 * depth - y * 0.12 * depth}px, 0)`;
+  document.querySelectorAll(".sd-split").forEach((el) => {
+    let i = 0;
+    el.querySelectorAll("[data-split]").forEach((line) => {
+      line.innerHTML = [...line.textContent].map((c) => `<span class="sd-ch" style="--i:${i++}">${c}</span>`).join("");
     });
-    if (hs && wide.matches) {
-      const r = hs.getBoundingClientRect();
-      const total = hs.offsetHeight - innerHeight;
-      const p = Math.min(Math.max(-r.top / total, 0), 1);
-      const max = track.scrollWidth - innerWidth + 48;
-      track.style.transform = `translate3d(${-p * max}px, 0, 0)`;
-      hsBar.style.setProperty("--p", p.toFixed(3));
-      count.textContent = String(Math.min(8, Math.floor(p * 7.999) + 1)).padStart(2, "0");
-    }
-    if (tlWrap) {
-      const r = tlWrap.getBoundingClientRect();
-      const p = Math.min(Math.max((innerHeight * 0.6 - r.top) / r.height, 0), 1);
-      line.style.setProperty("--p", p.toFixed(3));
-    }
-    requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-
-  // magnetic buttons
-  document.querySelectorAll(".sd-btn").forEach((b) => {
-    b.addEventListener("pointermove", (e) => {
-      const r = b.getBoundingClientRect();
-      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.18}px, ${(e.clientY - r.top - r.height / 2) * 0.28}px)`;
-    });
-    b.addEventListener("pointerleave", () => { b.style.transform = ""; });
   });
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+  }), { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".sd-rv, .sd-split").forEach((el) => reduce ? el.classList.add("is-in") : io.observe(el));
+
+  // ticker
+  const list = document.querySelector(".sd-ticker-list");
+  if (list && !reduce) {
+    let n = 0; const count = list.children.length - 1;
+    setInterval(() => {
+      n += 1;
+      list.style.transition = "";
+      list.style.transform = `translateY(${-n * 1.5}em)`;
+      if (n === count) {
+        setTimeout(() => { list.style.transition = "none"; list.style.transform = "translateY(0)"; n = 0; }, 750);
+      }
+    }, 2200);
+  }
+
+  // cube: assemble on load + pointer parallax
+  const cube = document.querySelector(".sd-cube-svg");
+  const float = document.querySelector(".sd-cube-float");
+  if (cube) {
+    const pieces = [...cube.querySelectorAll("use")];
+    if (!reduce) {
+      pieces.forEach((p, i) => {
+        const a = i * 2.1, r = 60 + (i % 5) * 18;
+        p.style.transform = `translate(${Math.cos(a) * r}px, ${Math.sin(a) * r - 40}px) rotate(${(i % 7 - 3) * 25}deg) scale(.5)`;
+        p.style.opacity = "0";
+        p.style.transitionDelay = `${300 + i * 45}ms`;
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => pieces.forEach((p) => { p.style.transform = ""; p.style.opacity = ""; })));
+      addEventListener("pointermove", (e) => {
+        const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+        float.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 14}deg)`;
+      });
+    }
+  }
+
+  // marquee reacts to scroll velocity
+  const track = document.querySelector(".sd-marquee-track");
+  let pos = 0, last = scrollY, boost = 0;
+  const loop = () => {
+    const v = scrollY - last; last = scrollY;
+    boost += (Math.abs(v) * 0.25 - boost) * 0.1;
+    pos -= 0.6 + boost;
+    const w = track.scrollWidth / 2;
+    if (-pos >= w) pos += w;
+    track.style.transform = `translateX(${pos}px)`;
+    requestAnimationFrame(loop);
+  };
+  if (track && !reduce) requestAnimationFrame(loop);
+
+  // card glow follows cursor
+  document.querySelectorAll(".sd-card, .sd-case").forEach((c) => c.addEventListener("pointermove", (e) => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    c.style.setProperty("--my", `${e.clientY - r.top}px`);
+  }));
 
   // blocks hop in sequence when CTA appears
   const blocks = document.querySelector(".sd-blocks-svg");
   if (blocks && !reduce) {
     const anims = [...blocks.querySelectorAll("animate")];
     const bio = new IntersectionObserver((es) => es.forEach((e) => {
-      if (e.isIntersecting) { anims.forEach((a, i) => setTimeout(() => a.beginElement(), i * 140)); }
+      if (e.isIntersecting) anims.forEach((a, i) => setTimeout(() => a.beginElement(), i * 140));
     }), { threshold: 0.5 });
     bio.observe(blocks);
   }
+
+  // tilt
+  document.querySelectorAll("[data-tilt]").forEach((el) => {
+    el.addEventListener("pointermove", (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+    });
+    el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+  });
+
+  // magnetic buttons
+  document.querySelectorAll(".sd-btn").forEach((b) => {
+    b.addEventListener("pointermove", (e) => {
+      const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.2}px, ${(e.clientY - r.top - r.height / 2) * 0.3}px)`;
+    });
+    b.addEventListener("pointerleave", () => { b.style.transform = ""; });
+  });
+
+  // process: active step + progress
+  const steps = [...document.querySelectorAll(".sd-step")];
+  const bar = document.querySelector(".sd-progress");
+  const onScroll = () => {
+    const mid = innerHeight * 0.55;
+    let active = 0;
+    steps.forEach((s, i) => { if (s.getBoundingClientRect().top < mid) active = i; });
+    steps.forEach((s, i) => s.classList.toggle("is-active", i === active));
+    const first = steps[0].getBoundingClientRect().top, lastR = steps[steps.length - 1].getBoundingClientRect().bottom;
+    const p = Math.min(Math.max((mid - first) / (lastR - first), 0), 1);
+    bar.style.setProperty("--p", p.toFixed(3));
+  };
+  if (steps.length) { addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
 })();
 }
