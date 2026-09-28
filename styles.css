@@ -3792,8 +3792,19 @@ body.inner-page.bpo-page .bpo-price-factors dt {
 body.inner-page.bpo-page .bpo-price-factors dd {
   margin: 6px 0 0;
   color: #fff;
+}
+
+body.inner-page.bpo-page .bpo-price-factors strong {
+  display: block;
   font-size: 17px;
-  font-weight: 700;
+}
+
+body.inner-page.bpo-page .bpo-price-factors span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 body.inner-page.bpo-page .bpo-range {
@@ -3814,7 +3825,7 @@ body.inner-page.bpo-page .bpo-range-col + .bpo-range-col {
 }
 
 body.inner-page.bpo-page .bpo-range h3 {
-  margin: 0 0 14px;
+  margin: 0;
   color: var(--inner-ink);
   font-size: 18px;
   line-height: 1.45;
@@ -3829,9 +3840,28 @@ body.inner-page.bpo-page .bpo-range li {
   line-height: 1.6;
 }
 
+body.inner-page.bpo-page .bpo-range-lead {
+  margin: 8px 0 16px;
+  color: var(--inner-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+body.inner-page.bpo-page .bpo-range li strong {
+  display: block;
+  font-weight: 700;
+}
+
+body.inner-page.bpo-page .bpo-range li span {
+  display: block;
+  margin-top: 2px;
+  color: var(--inner-muted);
+  font-size: 13px;
+}
+
 body.inner-page.bpo-page .bpo-range li::before {
   position: absolute;
-  top: 50%;
+  top: 13px;
   left: 0;
   display: grid;
   width: 20px;
@@ -3841,7 +3871,6 @@ body.inner-page.bpo-page .bpo-range li::before {
   font-size: 11px;
   font-weight: 700;
   line-height: 1;
-  transform: translateY(-50%);
 }
 
 body.inner-page.bpo-page .bpo-range-yes li::before {
@@ -4036,6 +4065,10 @@ body.inner-page.bpo-page #bpo-faq {
   body.inner-page.bpo-page .bpo-related {
     grid-template-columns: 1fr;
     gap: 14px;
+  }
+
+  body.inner-page.bpo-page .bpo-price-factors {
+    grid-template-columns: 1fr;
   }
 
   body.inner-page.bpo-page .bpo-price-factors div {
