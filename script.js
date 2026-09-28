@@ -10,6 +10,99 @@ const navOriginalNextSibling = siteNav?.nextSibling || null;
 let navIsPortaled = false;
 let navScrollY = 0;
 
+function initCursorFollower() {
+  const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  if (!pointerQuery.matches || reducedMotionQuery.matches) {
+    return;
+  }
+
+  const orb = document.createElement("span");
+  const dot = document.createElement("span");
+  orb.className = "cursor-follower";
+  dot.className = "cursor-follower-dot";
+  orb.setAttribute("aria-hidden", "true");
+  dot.setAttribute("aria-hidden", "true");
+  document.body.append(orb, dot);
+
+  const pointer = { x: -100, y: -100 };
+  const orbPosition = { x: -100, y: -100 };
+  const dotPosition = { x: -100, y: -100 };
+  let active = false;
+  let frame = 0;
+
+  const render = () => {
+    const orbEase = active ? 0.12 : 0.2;
+    const dotEase = active ? 0.28 : 0.2;
+
+    orbPosition.x += (pointer.x - orbPosition.x) * orbEase;
+    orbPosition.y += (pointer.y - orbPosition.y) * orbEase;
+    dotPosition.x += (pointer.x - dotPosition.x) * dotEase;
+    dotPosition.y += (pointer.y - dotPosition.y) * dotEase;
+
+    const orbScale = orb.classList.contains("is-hovering") ? 1.55 : 1;
+    const dotScale = dot.classList.contains("is-hovering") ? 1.25 : 1;
+
+    orb.style.transform = `translate3d(${orbPosition.x.toFixed(2)}px, ${orbPosition.y.toFixed(2)}px, 0) translate(-50%, -50%) scale(${orbScale})`;
+    dot.style.transform = `translate3d(${dotPosition.x.toFixed(2)}px, ${dotPosition.y.toFixed(2)}px, 0) translate(-50%, -50%) scale(${dotScale})`;
+
+    const orbDistance = Math.hypot(pointer.x - orbPosition.x, pointer.y - orbPosition.y);
+    const dotDistance = Math.hypot(pointer.x - dotPosition.x, pointer.y - dotPosition.y);
+
+    if (active || orbDistance > 0.2 || dotDistance > 0.2) {
+      frame = requestAnimationFrame(render);
+    } else {
+      frame = 0;
+    }
+  };
+
+  const requestRender = () => {
+    if (!frame) {
+      frame = requestAnimationFrame(render);
+    }
+  };
+
+  const setHoverState = (event) => {
+    const target = event.target instanceof Element
+      ? event.target.closest("a, button, input, textarea, select, [role=button]")
+      : null;
+
+    orb.classList.toggle("is-hovering", Boolean(target));
+    dot.classList.toggle("is-hovering", Boolean(target));
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
+    active = true;
+    root.classList.add("has-cursor-follower");
+    setHoverState(event);
+    requestRender();
+  }, { passive: true });
+
+  window.addEventListener("pointerout", (event) => {
+    if (event.relatedTarget) {
+      return;
+    }
+
+    active = false;
+    root.classList.remove("has-cursor-follower");
+    orb.classList.remove("is-hovering");
+    dot.classList.remove("is-hovering");
+    requestRender();
+  }, { passive: true });
+
+  window.addEventListener("pointerdown", () => {
+    orb.classList.add("is-pressing");
+    dot.classList.add("is-pressing");
+  }, { passive: true });
+
+  window.addEventListener("pointerup", () => {
+    orb.classList.remove("is-pressing");
+    dot.classList.remove("is-pressing");
+  }, { passive: true });
+}
+
 function closeNav() {
   if (!navToggle || !siteNav) {
     return;
@@ -567,6 +660,7 @@ function initScrollReveal() {
   uniqueTargets.forEach((item) => observer.observe(item));
 }
 
+initCursorFollower();
 initScrollCue();
 initHeaderState();
 initPinkCubeMotion();
