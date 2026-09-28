@@ -837,16 +837,6 @@ if (document.body.classList.contains("sd-page")) {
     c.style.setProperty("--my", `${e.clientY - r.top}px`);
   }));
 
-  // blocks hop in sequence when CTA appears
-  const blocks = document.querySelector(".sd-blocks-svg");
-  if (blocks && !reduce) {
-    const anims = [...blocks.querySelectorAll("animate")];
-    const bio = new IntersectionObserver((es) => es.forEach((e) => {
-      if (e.isIntersecting) anims.forEach((a, i) => setTimeout(() => a.beginElement(), i * 140));
-    }), { threshold: 0.5 });
-    bio.observe(blocks);
-  }
-
   // tilt
   document.querySelectorAll("[data-tilt]").forEach((el) => {
     el.addEventListener("pointermove", (e) => {
