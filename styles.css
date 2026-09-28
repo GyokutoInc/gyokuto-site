@@ -7159,85 +7159,172 @@ body.inner-page.ai-consulting-page .ai-flow p {
 
 /* Pricing & scope */
 body.inner-page.ai-consulting-page .ai-forms {
-  border-top: 1px solid var(--inner-ink);
+  padding: clamp(32px, 5vw, 64px);
+  border-radius: 28px;
+  color: #fff;
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(139, 92, 246, 0.45) 0%, rgba(139, 92, 246, 0) 55%),
+    var(--navy);
 }
 
-body.inner-page.ai-consulting-page .ai-forms-head,
-body.inner-page.ai-consulting-page .ai-form {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(20px, 3vw, 40px);
+body.inner-page.ai-consulting-page .ai-forms-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-bottom: clamp(28px, 4vw, 44px);
 }
 
-body.inner-page.ai-consulting-page .ai-forms-head {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--inner-line);
-  color: var(--inner-muted);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-body.inner-page.ai-consulting-page .ai-form {
-  padding: 30px 0;
-  border-bottom: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-form-name h3 {
+body.inner-page.ai-consulting-page .ai-forms-intro p {
   margin: 0;
-  color: var(--inner-ink);
-  font-size: clamp(20px, 2vw, 24px);
-  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
 }
 
-body.inner-page.ai-consulting-page .ai-form-name p {
+body.inner-page.ai-consulting-page .ai-forms-intro .ai-forms-label {
+  color: #fff;
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 700;
+}
+
+body.inner-page.ai-consulting-page .ai-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.inner-page.ai-consulting-page .ai-form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(20px, 3vw, 40px);
+}
+
+body.inner-page.ai-consulting-page .ai-form:first-child {
+  padding-left: 0;
+}
+
+body.inner-page.ai-consulting-page .ai-form:last-child {
+  padding-right: 0;
+}
+
+body.inner-page.ai-consulting-page .ai-form + .ai-form {
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+body.inner-page.ai-consulting-page .ai-form-num {
+  color: var(--lavender);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+body.inner-page.ai-consulting-page .ai-form h3 {
+  margin: 10px 0 0;
+  color: #fff;
+  font-size: clamp(22px, 2.3vw, 28px);
+  line-height: 1.35;
+}
+
+body.inner-page.ai-consulting-page .ai-form-tagline {
   margin: 8px 0 0;
-  color: var(--ai-accent-dark);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 14px;
-  font-weight: 500;
   line-height: 1.7;
 }
 
+body.inner-page.ai-consulting-page .ai-form-chart {
+  margin: 22px 0 6px;
+}
+
+body.inner-page.ai-consulting-page .ai-form-chart svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  overflow: visible;
+}
+
+body.inner-page.ai-consulting-page .ai-form-chart .ax {
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1.5;
+}
+
+body.inner-page.ai-consulting-page .ai-form-chart .bar {
+  fill: rgba(196, 181, 253, 0.35);
+}
+
+body.inner-page.ai-consulting-page .ai-form-chart .pt {
+  fill: var(--lavender);
+}
+
+body.inner-page.ai-consulting-page .ai-form-chart .dash {
+  stroke: var(--lavender);
+  stroke-width: 2;
+  stroke-dasharray: 4 6;
+  stroke-linecap: round;
+}
+
+body.inner-page.ai-consulting-page .ai-form-chart text {
+  fill: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 500;
+}
+
 body.inner-page.ai-consulting-page .ai-form-spec {
-  display: contents;
+  margin: auto 0 0;
+  padding-top: 16px;
+}
+
+body.inner-page.ai-consulting-page .ai-form-spec div {
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 body.inner-page.ai-consulting-page .ai-form-spec dt {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+  color: var(--lavender);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 body.inner-page.ai-consulting-page .ai-form-spec dd {
-  margin: 0;
-  color: var(--inner-ink);
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-body.inner-page.ai-consulting-page .ai-forms-note {
-  margin: 18px 0 0;
-  color: var(--inner-muted);
+  margin: 4px 0 0;
+  color: #fff;
   font-size: 14px;
+  line-height: 1.75;
 }
 
 body.inner-page.ai-consulting-page .ai-pricing-detail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(28px, 4vw, 56px);
-  margin-top: clamp(56px, 7vw, 88px);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+body.inner-page.ai-consulting-page .ai-detail-block {
+  padding: clamp(26px, 3vw, 36px);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.86);
 }
 
 body.inner-page.ai-consulting-page .ai-detail-block h3 {
-  margin: 0;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--inner-ink);
+  margin: 0 0 8px;
   color: var(--inner-ink);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.5;
+}
+
+body.inner-page.ai-consulting-page .ai-detail-block h3::before {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin-bottom: 16px;
+  content: "";
+  border-radius: 2px;
+  background: var(--ai-accent);
 }
 
 body.inner-page.ai-consulting-page .ai-detail-list {
@@ -7399,30 +7486,27 @@ body.inner-page.ai-consulting-page #ai-faq {
     grid-template-columns: 1fr;
   }
 
-  body.inner-page.ai-consulting-page .ai-forms-head {
-    display: none;
-  }
-
-  body.inner-page.ai-consulting-page .ai-form {
+  body.inner-page.ai-consulting-page .ai-form-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 
-  body.inner-page.ai-consulting-page .ai-form-spec {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+  body.inner-page.ai-consulting-page .ai-form,
+  body.inner-page.ai-consulting-page .ai-form:first-child,
+  body.inner-page.ai-consulting-page .ai-form:last-child {
+    padding: 28px 0;
   }
 
-  body.inner-page.ai-consulting-page .ai-form-spec dt {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip: auto;
-    color: var(--inner-muted);
-    font-size: 12px;
-    font-weight: 700;
+  body.inner-page.ai-consulting-page .ai-form:first-child {
+    padding-top: 0;
+  }
+
+  body.inner-page.ai-consulting-page .ai-form:last-child {
+    padding-bottom: 0;
+  }
+
+  body.inner-page.ai-consulting-page .ai-form + .ai-form {
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    border-left: 0;
   }
 
   body.inner-page.ai-consulting-page .ai-flow {
@@ -7510,19 +7594,15 @@ body.inner-page.ai-consulting-page #ai-faq {
     gap: 14px;
   }
 
-  body.inner-page.ai-consulting-page .ai-form-spec {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  body.inner-page.ai-consulting-page .ai-forms {
+    margin: 0 -8px;
+    padding: 28px 22px;
+    border-radius: 22px;
   }
 
-  body.inner-page.ai-consulting-page .ai-form-spec div {
-    display: grid;
-    grid-template-columns: 84px minmax(0, 1fr);
-    gap: 12px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-form-spec dd {
-    font-size: 14px;
+  body.inner-page.ai-consulting-page .ai-pricing-detail {
+    gap: 14px;
+    margin-top: 14px;
   }
 
   body.inner-page.ai-consulting-page .ai-faq-list summary {
