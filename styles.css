@@ -7129,64 +7129,6 @@ body.inner-page.ai-consulting-page .ai-service .ai-service-label {
   letter-spacing: 0.08em;
 }
 
-body.inner-page.ai-consulting-page .ai-related {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  align-items: center;
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--inner-line);
-}
-
-body.inner-page.ai-consulting-page .ai-related-title {
-  margin: 0;
-  color: var(--inner-ink);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.7;
-}
-
-body.inner-page.ai-consulting-page .ai-related-link {
-  position: relative;
-  display: block;
-  padding: 16px 44px 16px 20px;
-  border: 1px solid var(--inner-line);
-  border-radius: 12px;
-  color: var(--inner-ink);
-  background: var(--ai-card);
-  text-decoration: none;
-  transition: border-color 200ms ease, color 200ms ease;
-}
-
-body.inner-page.ai-consulting-page .ai-related-link::after {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  content: "→";
-  color: var(--ai-accent-dark);
-  transform: translateY(-50%);
-}
-
-body.inner-page.ai-consulting-page .ai-related-link:hover,
-body.inner-page.ai-consulting-page .ai-related-link:focus-visible {
-  border-color: var(--ai-accent);
-  color: var(--ai-accent-dark);
-}
-
-body.inner-page.ai-consulting-page .ai-related-link span {
-  display: block;
-  font-size: 15px;
-  font-weight: 700;
-}
-
-body.inner-page.ai-consulting-page .ai-related-link small {
-  display: block;
-  margin-top: 2px;
-  color: var(--inner-muted);
-  font-size: 12px;
-}
-
 /* Process */
 body.inner-page.ai-consulting-page .ai-flow {
   display: grid;
@@ -7356,14 +7298,6 @@ body.inner-page.ai-consulting-page #ai-faq {
     grid-template-columns: 1fr;
   }
 
-  body.inner-page.ai-consulting-page .ai-related {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  body.inner-page.ai-consulting-page .ai-related-title {
-    grid-column: 1 / -1;
-  }
-
   body.inner-page.ai-consulting-page .ai-flow {
     grid-template-columns: 1fr;
     padding-left: 6px;
@@ -7419,11 +7353,6 @@ body.inner-page.ai-consulting-page #ai-faq {
 
   body.inner-page.ai-consulting-page .ai-hero .ai-hero-lead + p {
     font-size: 15px;
-  }
-
-  body.inner-page.ai-consulting-page .ai-related {
-    grid-template-columns: 1fr;
-    gap: 14px;
   }
 
   body.inner-page.ai-consulting-page .ai-uc-tabs {
