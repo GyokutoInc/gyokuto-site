@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260928-3">
+  <link rel="stylesheet" href="styles.css?v=20260928-4">
 </head>
 <body class="inner-page service-detail-page bpo-page">
   <div class="home-morph-background" data-morph-background aria-hidden="true">
@@ -134,27 +134,31 @@
           <p class="eyebrow">PRICING &amp; SCOPE</p>
           <h2>料金と対応範囲</h2>
         </div>
-        <div class="bpo-scope-grid">
-          <div class="bpo-scope">
-            <h3>料金</h3>
-            <p>一律のパッケージではなく、業務の範囲と量に応じて個別にお見積りします。</p>
+        <div class="bpo-price">
+          <div class="bpo-price-summary">
+            <p class="bpo-price-label">料金</p>
+            <p class="bpo-price-value">個別お見積り</p>
+            <p>一律のパッケージではなく、業務の範囲と量に応じてお見積りします。</p>
+          </div>
+          <dl class="bpo-price-factors">
+            <div><dt>01</dt><dd>対象業務</dd></div>
+            <div><dt>02</dt><dd>件数・頻度</dd></div>
+            <div><dt>03</dt><dd>納期・確認工程</dd></div>
+            <div><dt>04</dt><dd>納品形式</dd></div>
+          </dl>
+        </div>
+        <div class="bpo-range">
+          <div class="bpo-range-col bpo-range-yes">
+            <h3>お任せいただける作業</h3>
             <ul>
-              <li>対象業務</li>
-              <li>件数・頻度</li>
-              <li>納期・確認工程</li>
-              <li>納品形式</li>
+              <li>データ入力・整備</li>
+              <li>リスト作成・情報整理</li>
+              <li>資料の体裁調整</li>
+              <li>手順に沿った確認作業</li>
             </ul>
           </div>
-          <div class="bpo-scope">
-            <h3>お客様にご判断いただくこと</h3>
-            <ul>
-              <li>業務の目的や方針</li>
-              <li>専門的な判断を伴う対応</li>
-              <li>最終的な承認</li>
-            </ul>
-          </div>
-          <div class="bpo-scope">
-            <h3>お引き受けしない業務</h3>
+          <div class="bpo-range-col bpo-range-no">
+            <h3>対象外の業務</h3>
             <ul>
               <li>電話対応</li>
               <li>営業代行</li>
@@ -163,6 +167,7 @@
             </ul>
           </div>
         </div>
+        <p class="bpo-range-note">業務の目的・方針の決定と最終的な承認は、お客様にご判断いただきます。</p>
       </div>
     </section>
 
