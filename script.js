@@ -831,11 +831,26 @@ if (document.body.classList.contains("sd-page")) {
   if (track && !reduce) requestAnimationFrame(loop);
 
   // card glow follows cursor
-  document.querySelectorAll(".sd-card, .sd-case").forEach((c) => c.addEventListener("pointermove", (e) => {
+  document.querySelectorAll(".sd-case").forEach((c) => c.addEventListener("pointermove", (e) => {
     const r = c.getBoundingClientRect();
     c.style.setProperty("--mx", `${e.clientX - r.left}px`);
     c.style.setProperty("--my", `${e.clientY - r.top}px`);
   }));
+
+  // service cards stack: covered cards shrink slightly
+  const stack = [...document.querySelectorAll(".sd-stack-card")];
+  if (stack.length && !reduce) {
+    const tickStack = () => stack.forEach((c, i) => {
+      const next = stack[i + 1];
+      const inner = c.firstElementChild;
+      if (!next) return;
+      const t = Math.min(1, Math.max(0, 1 - (next.getBoundingClientRect().top - c.getBoundingClientRect().top) / 400));
+      inner.style.transform = t ? `scale(${1 - t * 0.06})` : "";
+      inner.style.filter = t ? `brightness(${1 - t * 0.04})` : "";
+    });
+    addEventListener("scroll", tickStack, { passive: true });
+    tickStack();
+  }
 
   // tilt
   document.querySelectorAll("[data-tilt]").forEach((el) => {
