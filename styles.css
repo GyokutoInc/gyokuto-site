@@ -84,7 +84,6 @@ html.has-reveal .reveal-item {
   transition:
     opacity var(--reveal-duration) cubic-bezier(0.22, 1, 0.36, 1),
     transform var(--reveal-duration) cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
 }
 
 html.has-reveal .reveal-item.is-visible {
@@ -269,6 +268,7 @@ body.home-page a {
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  contain: strict;
   pointer-events: none;
   opacity: 0;
   transition: opacity 900ms var(--home-ease);
@@ -296,13 +296,17 @@ body.home-page a {
 .home-morph-shape {
   fill: url("#home-morph-gradient");
   opacity: 0.82;
-  filter: saturate(0.9);
 }
+
+/* 旧 filter: saturate(0.9) をグラデーション色に焼き込み（毎フレームのフィルタ処理を省く） */
+#home-morph-gradient stop:nth-child(1) { stop-color: #c3b6f7; }
+#home-morph-gradient stop:nth-child(2) { stop-color: #885ee9; }
+#home-morph-gradient stop:nth-child(3) { stop-color: #692bca; }
 
 .home-morph-shadow {
   fill: #8b5cf6;
   opacity: 0.2;
-  filter: url("#home-morph-soften");
+  filter: blur(3px);
   transform: translate(-18px, 20px);
 }
 
