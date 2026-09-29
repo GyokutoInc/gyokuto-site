@@ -659,38 +659,35 @@ function initScrollReveal() {
   uniqueTargets.forEach((item) => observer.observe(item));
 }
 
-function initUseCaseTabs() {
-  document.querySelectorAll("[data-ai-tabs]").forEach((root) => {
-    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
-    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute("aria-controls")));
+function initUseCaseBands() {
+  const hover = window.matchMedia("(hover: hover) and (min-width: 981px)");
 
-    const select = (index, focus) => {
-      tabs.forEach((tab, i) => {
-        const active = i === index;
-        tab.setAttribute("aria-selected", String(active));
-        tab.tabIndex = active ? 0 : -1;
-        if (panels[i]) {
-          panels[i].hidden = !active;
-        }
+  document.querySelectorAll("[data-ai-bands]").forEach((root) => {
+    const bands = Array.from(root.querySelectorAll(".ai-band"));
+
+    const open = (band) => {
+      bands.forEach((item) => {
+        const active = item === band;
+        item.classList.toggle("is-open", active);
+        item.setAttribute("aria-expanded", String(active));
       });
-      if (focus) {
-        tabs[index].focus();
-      }
     };
 
-    tabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => select(index, false));
-      tab.addEventListener("keydown", (event) => {
-        const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-        if (event.key in keys) {
+    bands.forEach((band) => {
+      band.addEventListener("mouseenter", () => {
+        if (hover.matches) {
+          open(band);
+        }
+      });
+      band.addEventListener("click", () => open(band));
+      band.addEventListener("focus", () => open(band));
+      band.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          select((index + keys[event.key] + tabs.length) % tabs.length, true);
+          open(band);
         }
       });
     });
-
-    root.classList.add("is-tabbed");
-    select(0, false);
   });
 }
 
@@ -747,7 +744,7 @@ initHeaderState();
 initPinkCubeMotion();
 initMorphingBackground();
 initScrollReveal();
-initUseCaseTabs();
+initUseCaseBands();
 initPricingForms();
 
 // System development page motion
