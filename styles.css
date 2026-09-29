@@ -510,44 +510,6 @@ html.has-js .home-page .home-reveal-scene:not(.is-visible) use {
   transform: translate3d(28px, 18px, 0) scale(0.9);
 }
 
-.home-scroll-cue {
-  position: absolute;
-  bottom: 38px;
-  left: clamp(24px, 4vw, 64px);
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0;
-  border: 0;
-  color: var(--home-ink);
-  background: transparent;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.home-scroll-cue-line {
-  position: relative;
-  display: inline-block;
-  width: 52px;
-  height: 1px;
-  overflow: hidden;
-  background: rgba(20, 38, 52, 0.2);
-}
-
-.home-scroll-cue-line::after {
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 24px;
-  content: "";
-  background: var(--home-violet);
-  transform: translateX(-100%);
-  animation: home-scroll-line 2.8s 1.5s var(--home-ease) infinite;
-}
-
 .home-section {
   position: relative;
   padding: clamp(100px, 12vw, 180px) 0;
@@ -898,11 +860,6 @@ html.has-js body.home-page .reveal-item.is-visible {
   transition-delay: var(--delay, 0ms);
 }
 
-@keyframes home-scroll-line {
-  0% { transform: translateX(-100%); }
-  45%, 100% { transform: translateX(300%); }
-}
-
 @media (max-width: 920px) {
   .home-container {
     width: min(100% - 48px, 680px);
@@ -1095,11 +1052,6 @@ html.has-js body.home-page .reveal-item.is-visible {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.72) 48%, rgba(255, 255, 255, 0.08) 100%);
   }
 
-  .home-scroll-cue {
-    bottom: 24px;
-    left: 16px;
-  }
-
   .home-section {
     padding: 86px 0;
   }
@@ -1192,7 +1144,6 @@ html.has-js body.home-page .reveal-item.is-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.home-page .home-scroll-cue-line::after,
   body.home-page .home-reveal-scene use,
   body.home-page .home-morph-background,
   body.home-page .about-line,
@@ -2927,33 +2878,6 @@ body.home-page a.home-button-light {
 .home-button-light:hover,
 .home-button-light:focus-visible {
   background: #f5f3ff;
-}
-
-.home-hero-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  margin: 34px 0 0;
-  padding: 0;
-  list-style: none;
-  color: var(--home-muted);
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.home-hero-points li {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.home-hero-points li::before {
-  width: 7px;
-  height: 7px;
-  content: "";
-  border-radius: 2px;
-  background: var(--home-violet);
-  transform: rotate(45deg);
 }
 
 .home-section-intro {
