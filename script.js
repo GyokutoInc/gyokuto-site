@@ -314,26 +314,6 @@ if (navToggle && siteNav) {
   syncNavState();
 }
 
-function initScrollCue() {
-  document.querySelectorAll("[data-scroll-target]").forEach((cue) => {
-    cue.addEventListener("click", () => {
-      const target = document.querySelector(cue.dataset.scrollTarget);
-
-      if (!target) {
-        return;
-      }
-
-      const headerOffset = siteHeader?.getBoundingClientRect().height || 0;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: Math.max(0, targetTop),
-        behavior: reducedMotionQuery.matches ? "auto" : "smooth"
-      });
-    });
-  });
-}
-
 function initHeaderState() {
   const hero = document.querySelector(".home-hero");
 
@@ -763,7 +743,6 @@ function initPricingForms() {
 }
 
 initCursorFollower();
-initScrollCue();
 initHeaderState();
 initPinkCubeMotion();
 initMorphingBackground();
