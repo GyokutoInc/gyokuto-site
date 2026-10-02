@@ -3995,13 +3995,6 @@ body.inner-page.bpo-page .bpo-hero::before {
   mask-image: linear-gradient(180deg, #000 calc(100% - 180px), transparent);
 }
 
-body.inner-page.bpo-page .bpo-hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(40px, 6vw, 88px);
-  align-items: center;
-}
-
 body.inner-page.bpo-page .bpo-hero h1 {
   margin-top: 14px;
   font-size: clamp(40px, 5.2vw, 68px);
@@ -4019,7 +4012,7 @@ body.inner-page.bpo-page .bpo-hero .bpo-hero-lead {
 }
 
 body.inner-page.bpo-page .bpo-hero .bpo-hero-lead + p {
-  max-width: 560px;
+  max-width: 640px;
   margin-top: 18px;
 }
 
@@ -4066,129 +4059,6 @@ body.inner-page.bpo-page .bpo-hero-actions .button {
 
 body.inner-page.bpo-page .bpo-hero-actions .text-link {
   margin-top: 0;
-}
-
-/* Hero ticket */
-body.inner-page.bpo-page .bpo-ticket {
-  position: relative;
-  padding: 26px 26px 22px;
-  border: 1px solid var(--inner-line);
-  border-radius: 20px;
-  background: var(--bpo-card);
-  box-shadow: 0 30px 70px -36px rgba(76, 29, 149, 0.45);
-  animation: bpo-float 6s ease-in-out infinite;
-}
-
-@keyframes bpo-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-body.inner-page.bpo-page .bpo-ticket-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-body.inner-page.bpo-page .bpo-ticket-tag {
-  color: var(--inner-violet);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-body.inner-page.bpo-page .bpo-ticket-status {
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-  padding: 4px 10px;
-  border-radius: 999px;
-  color: var(--bpo-accent-dark);
-  background: var(--bpo-soft);
-  font-size: 12px;
-  font-weight: 700;
-  opacity: 0;
-  animation: bpo-fade-in 400ms ease forwards 2.6s;
-}
-
-body.inner-page.bpo-page .bpo-ticket-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--bpo-accent);
-}
-
-@keyframes bpo-fade-in {
-  to { opacity: 1; }
-}
-
-body.inner-page.bpo-page .bpo-hero .bpo-ticket-title {
-  max-width: none;
-  margin: 14px 0 0;
-  color: var(--inner-ink);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-body.inner-page.bpo-page .bpo-ticket-rows {
-  margin: 18px 0 0;
-}
-
-body.inner-page.bpo-page .bpo-ticket-rows div {
-  display: flex;
-  justify-content: space-between;
-  padding: 11px 0;
-  border-top: 1px solid var(--inner-line);
-  font-size: 14px;
-}
-
-body.inner-page.bpo-page .bpo-ticket-rows dt {
-  color: var(--inner-muted);
-}
-
-body.inner-page.bpo-page .bpo-ticket-rows dd {
-  margin: 0;
-  color: var(--inner-ink);
-  font-weight: 700;
-}
-
-body.inner-page.bpo-page .bpo-ticket-progress {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-top: 14px;
-}
-
-body.inner-page.bpo-page .bpo-ticket-bar {
-  position: relative;
-  flex: 1;
-  height: 6px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--bpo-soft);
-}
-
-body.inner-page.bpo-page .bpo-ticket-bar::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--bpo-accent), var(--bpo-accent-dark));
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: bpo-fill 2.2s var(--bpo-ease) forwards 0.4s;
-}
-
-@keyframes bpo-fill {
-  to { transform: scaleX(1); }
-}
-
-body.inner-page.bpo-page .bpo-ticket-count {
-  color: var(--inner-muted);
-  font-size: 12px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
 }
 
 /* Shared section parts */
@@ -5004,13 +4874,8 @@ body.inner-page.bpo-page #bpo-faq {
 }
 
 @media (max-width: 980px) {
-  body.inner-page.bpo-page .bpo-hero-grid,
   body.inner-page.bpo-page .bpo-delivery-grid {
     grid-template-columns: 1fr;
-  }
-
-  body.inner-page.bpo-page .bpo-ticket {
-    max-width: 460px;
   }
 
   body.inner-page.bpo-page .bpo-compare {
@@ -5124,11 +4989,8 @@ body.inner-page.bpo-page #bpo-faq {
     transition: none;
   }
 
-  body.inner-page.bpo-page .bpo-ticket,
   body.inner-page.bpo-page .bpo-clock-hand,
-  body.inner-page.bpo-page .bpo-meter-fill,
-  body.inner-page.bpo-page .bpo-ticket-bar::after,
-  body.inner-page.bpo-page .bpo-ticket-status {
+  body.inner-page.bpo-page .bpo-meter-fill {
     animation: none;
     opacity: 1;
     transform: none;
