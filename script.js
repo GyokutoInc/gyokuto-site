@@ -875,3 +875,64 @@ if (document.body.classList.contains("sd-page")) {
   if (steps.length) { addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
 })();
 }
+
+// BPO page motion
+if (document.body.classList.contains("bpo-page")) {
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const format = (n) => n.toLocaleString("ja-JP");
+
+  const countUp = (el) => {
+    const target = Number(el.dataset.count);
+    if (reduce || !target) {
+      el.textContent = format(target);
+      return;
+    }
+    const start = performance.now();
+    const duration = 1400;
+    const step = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      el.textContent = format(Math.round(target * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    if (e.target.matches("[data-count]")) countUp(e.target);
+    else e.target.classList.add("is-in");
+    io.unobserve(e.target);
+  }), { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+
+  document.querySelectorAll(".bpo-rv, .bpo-formula, .bpo-sheet").forEach((el) => (reduce ? el.classList.add("is-in") : io.observe(el)));
+  document.querySelectorAll("[data-count]").forEach((el) => {
+    if (reduce) return;
+    el.textContent = "0";
+    io.observe(el);
+  });
+
+  // example filter
+  const filter = document.querySelector("[data-bpo-filter]");
+  const orders = [...document.querySelectorAll("[data-bpo-orders] .bpo-order")];
+  if (filter) {
+    filter.addEventListener("click", (e) => {
+      const button = e.target.closest("button[data-filter]");
+      if (!button) return;
+      const key = button.dataset.filter;
+      filter.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", String(b === button)));
+      let i = 0;
+      orders.forEach((card) => {
+        const show = key === "all" || card.dataset.cat === key;
+        card.hidden = !show;
+        card.classList.remove("is-entering");
+        if (show && !reduce) {
+          void card.offsetWidth;
+          card.style.setProperty("--d", `${i++ * 60}ms`);
+          card.classList.add("is-entering");
+        }
+      });
+    });
+  }
+})();
+}
